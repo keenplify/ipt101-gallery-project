@@ -21,93 +21,101 @@ namespace ipt101_gallery_project.Helpers
         public static string SK_BASE64 = Strings.Base64Encode(SECRET_KEY);
         public static RestClient client = new RestClient($"{API_URL}");
 
-        public static async void CreateTransactionAsync(int amount, string source_type, string created_by)
+        public static async void CreateTransaction(int amount, string source_type, string created_by)
         {
-            var payment_Guid = Guid.NewGuid();
-
-            SqlConnection connection = Database.Connect();
-            string query = $"INSERT INTO paymongo_payments_tbl" +
-                $"(" +
-                $"guid," +
-                $"created_by" +
-                $") VALUES (" +
-                $"'{payment_Guid}'," +
-                $"'{created_by}'" +
-                $")";
-
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
-
-
-            var host = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
-            var sourceBody = new
+            try
             {
-                data = new
+                var payment_Guid = Guid.NewGuid();
+
+                SqlConnection connection = Database.Connect();
+                string query = $"INSERT INTO paymongo_payments_tbl" +
+                    $"(" +
+                    $"guid," +
+                    $"created_by" +
+                    $") VALUES (" +
+                    $"'{payment_Guid}'," +
+                    $"'{created_by}'" +
+                    $")";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+
+
+                var host = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+                var sourceBody = new
                 {
-                    attributes = new
+                    data = new
                     {
-                        amount = amount,
-                        currency = "PHP",
-                        type = source_type,
-                        redirect = new
+                        attributes = new
                         {
-                            failed = host + "/PaymongoPayment?status=failed",
-                            success = host + $"/PaymongoPayment?status=success&paymentGuid={payment_Guid}"
+                            amount = amount,
+                            currency = "PHP",
+                            type = source_type,
+                            redirect = new
+                            {
+                                failed = host + "/PaymongoPayment?status=failed",
+                                success = host + $"/PaymongoPayment?status=success&paymentGuid={payment_Guid}"
+                            }
                         }
                     }
-                }
-            };
+                };
 
-            var sourceRequest = new RestRequest("sources");
+                var sourceRequest = new RestRequest("sources");
 
-            sourceRequest.AddJsonBody(sourceBody);
-            sourceRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
-            var sourceResponse = await client.ExecutePostAsync(sourceRequest);
-            var source = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(sourceResponse.Content);
-            string sourceId = source["data"]["id"].ToString();
-            var sourceAttributes = ((JObject)source["data"]["attributes"]).ToObject<Dictionary<string, object>>();
-            var sourceAttributesRedirect = ((JObject)sourceAttributes["redirect"]).ToObject<Dictionary<string, object>>();
-            string checkoutUrl = (string)sourceAttributesRedirect["checkout_url"];
+                sourceRequest.AddJsonBody(sourceBody);
+                sourceRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
+                var sourceResponse = await client.ExecutePostAsync(sourceRequest);
+                var source = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(sourceResponse.Content);
+                string sourceId = source["data"]["id"].ToString();
+                var sourceAttributes = ((JObject)source["data"]["attributes"]).ToObject<Dictionary<string, object>>();
+                var sourceAttributesRedirect = ((JObject)sourceAttributes["redirect"]).ToObject<Dictionary<string, object>>();
+                string checkoutUrl = (string)sourceAttributesRedirect["checkout_url"];
 
-            var paymentBody = new
-            {
-                data = new
+                var paymentBody = new
                 {
-                    attributes = new
+                    data = new
                     {
-                        type = source_type,
-                        amount = amount,
-                        currency = "PHP",
-                        source = new
+                        attributes = new
                         {
-                            id = sourceId,
-                            type = "source"
+                            type = source_type,
+                            amount = amount,
+                            currency = "PHP",
+                            source = new
+                            {
+                                id = sourceId,
+                                type = "source"
+                            }
                         }
                     }
-                }
-            };
+                };
 
-            var paymentRequest = new RestRequest("payments");
+                var paymentRequest = new RestRequest("payments");
 
-            paymentRequest.AddJsonBody(paymentBody);
-            paymentRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
-            var paymentResponse = await client.ExecutePostAsync(sourceRequest);
-            var payment = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(paymentResponse.Content);
-            string paymentId = payment["data"]["id"].ToString();
-            SqlConnection connection2 = Database.Connect();
+                paymentRequest.AddJsonBody(paymentBody);
+                paymentRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
+                var paymentResponse = await client.ExecutePostAsync(sourceRequest);
+                var payment = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(paymentResponse.Content);
+                string paymentId = payment["data"]["id"].ToString();
+                SqlConnection connection2 = Database.Connect();
 
-            string query2 = $"UPDATE paymongo_payments_tbl SET " +
-                $"source_id='{sourceId}'," +
-                $"payment_id='{paymentId}'," +
-                $"amount='{amount}'," +
-                $"source_type='{source_type}'," +
-                $"checkout_url='{checkoutUrl}' " +
-                $"WHERE guid='{payment_Guid}'";
-            SqlCommand cmd2 = new SqlCommand(query2, connection2);
+                string query2 = $"UPDATE paymongo_payments_tbl SET " +
+                    $"source_id='{sourceId}'," +
+                    $"payment_id='{paymentId}'," +
+                    $"amount='{amount}'," +
+                    $"source_type='{source_type}'," +
+                    $"checkout_url='{checkoutUrl}' " +
+                    $"WHERE guid='{payment_Guid}'";
+                SqlCommand cmd2 = new SqlCommand(query2, connection2);
 
-            cmd2.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
 
-            HttpContext.Current.Response.Redirect(checkoutUrl);
+                HttpContext.Current.Response.Redirect(checkoutUrl, false);
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception error)
+            {
+                System.Diagnostics.Debug.WriteLine(error.Message);
+            }
         }
     }
 }
