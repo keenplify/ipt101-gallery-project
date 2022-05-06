@@ -61,7 +61,6 @@ namespace ipt101_gallery_project.Helpers
                 };
 
                 var sourceRequest = new RestRequest("sources");
-
                 sourceRequest.AddJsonBody(sourceBody);
                 sourceRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
                 var sourceResponse = await client.ExecutePostAsync(sourceRequest);
@@ -90,8 +89,8 @@ namespace ipt101_gallery_project.Helpers
                 };
 
                 var paymentRequest = new RestRequest("payments");
-
                 paymentRequest.AddJsonBody(paymentBody);
+
                 paymentRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
                 var paymentResponse = await client.ExecutePostAsync(sourceRequest);
                 var payment = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(paymentResponse.Content);
@@ -115,6 +114,7 @@ namespace ipt101_gallery_project.Helpers
             catch (Exception error)
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
+                throw error;
             }
         }
     }

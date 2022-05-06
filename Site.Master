@@ -14,7 +14,7 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
     <form runat="server">
@@ -83,5 +83,8 @@
         </div>
 
     </form>
+    <script>
+      feather.replace()
+    </script>
 </body>
 </html>
