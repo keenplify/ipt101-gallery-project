@@ -64,11 +64,11 @@
                     <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     <% if (user != null)
                         { %>
-                    <li class="nav-item dropdown" style="margin-right: 4em">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @<%=user["username"] %>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class=" dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item font-weight-bold" href="./AddWallet">
                                 Wallet
                                 <span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
