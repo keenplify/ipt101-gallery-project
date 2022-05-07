@@ -64,12 +64,15 @@
                     <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     <% if (user != null)
                         { %>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" style="margin-right: 4em">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @<%=user["username"] %>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./AddWallet">₱<%=(double)((int)user["wallet"] ) / 100%></a>
+                            <a class="dropdown-item font-weight-bold" href="./AddWallet">
+                                Wallet
+                                <span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
+                            </a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
@@ -89,10 +92,6 @@
         <div class="body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
         </div>
 
     </form>
