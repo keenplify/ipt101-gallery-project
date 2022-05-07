@@ -57,7 +57,7 @@ namespace ipt101_gallery_project
 
             }
 
-            Response.Redirect("~/");
+            Response.Redirect("~/AddWallet");
         }
     }
 }

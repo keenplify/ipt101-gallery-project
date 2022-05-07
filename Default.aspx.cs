@@ -16,8 +16,9 @@ namespace ipt101_gallery_project
 
         protected void Pay_Click(object sender, EventArgs e)
         {
+
             var user = Helpers.User.AutoLogin();
-            Helpers.Paymongo.CreateTransactionAsync(50050, "gcash", (string)user["user_guid"]);
+            Helpers.Paymongo.CreateTransaction(50050, "gcash", (string)user["user_guid"]);
         }
     }
 }

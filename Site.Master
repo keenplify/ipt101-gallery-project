@@ -14,7 +14,6 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -25,6 +24,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
 
     <asp:contentPlaceholder id="head" runat="server" />
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
     <form runat="server">
@@ -96,5 +96,8 @@
         </div>
 
     </form>
+    <script>
+      feather.replace()
+    </script>
 </body>
 </html>
