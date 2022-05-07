@@ -18,12 +18,12 @@ namespace ipt101_gallery_project
         {
             try
             {
-                Dictionary<string, object> user = Helpers.User.Login(username.Text, password.Text);
+                Dictionary<string, object> user = Helpers.User.Login(LoginUsername.Text, LoginPassword.Text);
                 Response.Redirect("/");
             }
             catch (InvalidOperationException error)
             {
-                lblError.Text = error.Message;
+                lblLoginError.Text = error.Message;
             }
         }
     }
