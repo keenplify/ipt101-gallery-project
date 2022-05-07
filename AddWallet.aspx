@@ -31,19 +31,18 @@
                       <div class="card-body">
                           <div>
                               <label>Select Payment Method</label>
-                              <asp:RadioButtonList runat="server" ID="PaymentMethods" CssClass="d-flex">
-                                  <asp:ListItem Value="gcash" Text="GCash" Selected="True"/>
-                                  <asp:ListItem Value="grab_pay" Text="Grab Pay"/>
-                                  <asp:ListItem Value="paymaya" Text="Paymaya" Enabled="false"/>
+                              <asp:RadioButtonList runat="server" ID="PaymentMethods" CssClass="btn-group colors w-100" RepeatLayout="Flow" data-toggle="buttons">
+                                  <asp:ListItem Value="gcash" Text="GCash" Selected="True" class="btn btn-primary active" autocomplete="off"/>
+                                  <asp:ListItem Value="grab_pay" Text="Grab Pay"  class="btn btn-primary" autocomplete="off"/>
                               </asp:RadioButtonList>
 
                           </div>
                           <div class="d-md-flex text-center">
-                            <asp:Button runat="server" ID="OneHundredCashInBtn" CssClass="btn btn-primary m-2" Text="₱100.00" OnClick="OneHundredCashInBtn_Click"/>
-                            <asp:Button runat="server" ID="TwoHundredCashInBtn" CssClass="btn btn-primary m-2" Text="₱200.00" OnClick="TwoHundredCashInBtn_Click"/>
-                            <asp:Button runat="server" ID="ThreeHundredCashInBtn" CssClass="btn btn-primary m-2" Text="₱300.00" OnClick="ThreeHundredCashInBtn_Click"/>
-                            <asp:Button runat="server" ID="FiveHundredCashInBtn" CssClass="btn btn-primary m-2" Text="₱500.00" OnClick="FiveHundredCashInBtn_Click"/>
-                            <asp:Button runat="server" ID="OneThousandCashInBtn" CssClass="btn btn-primary m-2" Text="₱1000.00" OnClick="OneThousandCashInBtn_Click"/>
+                            <asp:Button runat="server" ID="OneHundredCashInBtn" CssClass="btn btn-info m-2" Text="₱100.00" OnClick="OneHundredCashInBtn_Click"/>
+                            <asp:Button runat="server" ID="TwoHundredCashInBtn" CssClass="btn btn-info m-2" Text="₱200.00" OnClick="TwoHundredCashInBtn_Click"/>
+                            <asp:Button runat="server" ID="ThreeHundredCashInBtn" CssClass="btn btn-info m-2" Text="₱300.00" OnClick="ThreeHundredCashInBtn_Click"/>
+                            <asp:Button runat="server" ID="FiveHundredCashInBtn" CssClass="btn btn-info m-2" Text="₱500.00" OnClick="FiveHundredCashInBtn_Click"/>
+                            <asp:Button runat="server" ID="OneThousandCashInBtn" CssClass="btn btn-info m-2" Text="₱1000.00" OnClick="OneThousandCashInBtn_Click"/>
                           </div>
                           <div class="d-flex flex-column align-items-center justify-content-center">
                               <label>Custom Cash-In</label>
@@ -52,7 +51,7 @@
                                   <span class="input-group-text" id="basic-addon1">₱</span>
                                   </div>
                                   <asp:TextBox type="number" step=".01" runat="server" min="100" max="5000" ID="CustomCashInTbx" CssClass="form-control" aria-label="Amount" aria-describedby="basic-addon1" />
-                                  <asp:Button runat="server" ID="CustomCashInBtn" CssClass=" input-group-append btn btn-info d-flex flex-grow-1 text-center justify-content-center align-items-center" Text="Cash In" OnClick="CustomCashInBtn_Click" />
+                                  <asp:Button runat="server" ID="CustomCashInBtn" CssClass=" input-group-append btn btn-success d-flex flex-grow-1 text-center justify-content-center align-items-center" Text="Cash In" OnClick="CustomCashInBtn_Click" />
                               </div>
                           </div>
                       </div>

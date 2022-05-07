@@ -21,25 +21,79 @@ namespace ipt101_gallery_project.Helpers
         public static string SK_BASE64 = Strings.Base64Encode(SECRET_KEY);
         public static RestClient client = new RestClient($"{API_URL}");
 
+        public static Guid CreatePaymongoPayments(string created_by)
+        {
+            var payment_Guid = Guid.NewGuid();
+
+            SqlConnection connection = Database.Connect();
+            string query = $"INSERT INTO paymongo_payments_tbl" +
+                $"(" +
+                $"guid," +
+                $"created_by" +
+                $") VALUES (" +
+                $"'{payment_Guid}'," +
+                $"'{created_by}'" +
+                $")";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.ExecuteNonQuery();
+
+            return payment_Guid;
+        }
+
+        // This currently only support paymaya payment intent. Unfinished.
+        public static async void CreateTransactionPaymentIntent(int amount, string created_by)
+        {
+            // var payment_Guid = CreatePaymongoPayments(created_by);
+
+            var host = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+            var paymentIntentBody = new
+            {
+                data = new
+                {
+                    attributes = new
+                    {
+                        amount,
+                        currency = "PHP",
+                        payment_method_allowed = new string[]{
+                            "card", "paymaya"
+                        },
+                        payment_method_options = new {
+                            card = new
+                            {
+                                request_three_d_secure = "any"
+                            }
+                        },
+                        capture_type = "automatic"
+                    }
+                }
+            };
+
+            var paymentIntentRequest = new RestRequest("payment_intents");
+            paymentIntentRequest.AddJsonBody(paymentIntentBody);
+            paymentIntentRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
+            var paymentIntentResponse = await client.ExecutePostAsync(paymentIntentRequest);
+            var paymentIntent = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(paymentIntentResponse.Content);
+            System.Diagnostics.Debug.WriteLine(paymentIntentResponse.Content);
+
+            // Create payment method
+            var paymentMethodRequest = new RestRequest("payment_methods");
+            paymentMethodRequest.AddHeader("Authorization", "Basic " + SK_BASE64);
+            var paymentMethodResponse = await client.ExecutePostAsync(paymentMethodRequest);
+            var paymentMethod = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(paymentMethodResponse.Content);
+            System.Diagnostics.Debug.WriteLine(paymentMethodResponse.Content);
+        }
         public static async void CreateTransaction(int amount, string source_type, string created_by)
         {
+            if (source_type == "payment_intent")
+            {
+                CreateTransactionPaymentIntent(amount, created_by);
+                return;
+            }
+
             try
             {
-                var payment_Guid = Guid.NewGuid();
-
-                SqlConnection connection = Database.Connect();
-                string query = $"INSERT INTO paymongo_payments_tbl" +
-                    $"(" +
-                    $"guid," +
-                    $"created_by" +
-                    $") VALUES (" +
-                    $"'{payment_Guid}'," +
-                    $"'{created_by}'" +
-                    $")";
-
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-
+                var payment_Guid = CreatePaymongoPayments(created_by);
 
                 var host = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
                 var sourceBody = new
