@@ -43,6 +43,11 @@ namespace ipt101_gallery_project.Helpers
             return user;
         }
 
+        public static void Register(string firstName, string middleName, string lastName, string birthday, string email, string password)
+        {
+
+        }
+
         public static Dictionary<string, object> AutoLogin(bool redirect=true)
         {
             if (!Cookie.CookieExist("user", "username") || !Cookie.CookieExist("user", "password"))

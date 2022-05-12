@@ -26,5 +26,18 @@ namespace ipt101_gallery_project
                 lblLoginError.Text = error.Message;
             }
         }
+
+        protected void RegisterBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Helpers.User.Register(regFirstName.Text, regLastName.Text, regLastName.Text, regBirthday.Text, regEmail.Text, regPass.Text);
+                Response.Redirect("/");
+            }
+            catch (InvalidOperationException error)
+            {
+                lblLoginError.Text = error.Message;
+            }
+        }
     }
 }
