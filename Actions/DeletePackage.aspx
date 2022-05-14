@@ -1,0 +1,1 @@
+﻿<%@ Page Async="true" EnableEventValidation="false" Title="Viewer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DeletePackage.aspx.cs" Inherits="ipt101_gallery_project.Actions.DeletePackage" %>

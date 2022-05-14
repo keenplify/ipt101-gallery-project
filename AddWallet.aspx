@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" EnableEventValidation="false" Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddWallet.aspx.cs" Inherits="ipt101_gallery_project.AddWallet" %>
+﻿<%@ Page Async="true" EnableEventValidation="false" Title="Your Wallet" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddWallet.aspx.cs" Inherits="ipt101_gallery_project.AddWallet" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-6 offset-md-3">
                 <div class="accordion" id="accordionExample">
                   <div class="card">
@@ -68,7 +68,113 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                       <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <asp:Panel runat="server" ID="Cashout" DefaultButton="CashOutBtn">
+                            <div class="container-fluid">
+                                <% if (CashOutErr.Text.Length > 0)
+                                    { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <asp:Label runat="server" ID="CashOutErr" />
+                                </div>
+                                <%} %>
+                                <div>
+                                    <label>Select Cash-out Method</label>
+                                    <asp:RadioButtonList runat="server" ID="CashOutTypeRbl" CssClass="btn-group colors w-100" RepeatLayout="Flow" data-toggle="buttons">
+                                        <asp:ListItem Value="gcash" Text="GCash" Selected="True" class="btn btn-primary active" autocomplete="off"/>
+                                        <asp:ListItem Value="grab_pay" Text="Grab Pay"  class="btn btn-primary" autocomplete="off"/>
+                                        <asp:ListItem Value="paymaya" Text="Paymaya"  class="btn btn-primary" autocomplete="off"/>
+                                    </asp:RadioButtonList>
+                                </div>
+                                <div class="form-group row my-2">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Account Name</label>
+                                    <div class="col-sm-8">
+                                        <asp:TextBox runat="server" class="form-control" id="CashOutAccountNameTbx"  placeholder="John Doe"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Account Number</label>
+                                    <div class="col-sm-8">
+                                        <asp:TextBox runat="server" class="form-control" id="CashOutAccountNumberTbx" pattern="[0-9]{11}" placeholder="09XX XXX XXXX" />
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Amount</label>
+                                    <div class="col-sm-8  mb-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="php">₱</span>
+                                            </div>
+                                            <asp:TextBox aria-describedby="php amountHelp" runat="server" step=".01" class="form-control" id="CashOutAmountTbx" min="0" type="number" onChange="cashOutAmountTbxChangedHandler()"/>
+                                        </div>
+                                        <small id="amountHelp" class="form-text text-muted">You'll get <span class="badge badge-info" id="TotalAmount">₱0</span> as we reduce 2% of your total cash-out as cashout fee.</small>
+                                    </div>
+                                    <script defer>
+                                        const CashOutAmountTbx = document.querySelector("#MainContent_CashOutAmountTbx")
+                                        const TotalAmount = document.querySelector("#TotalAmount")
+
+                                        const inputHandler = function (e) {
+                                            if (e.target.value.length == 0) return;
+                                            const value = Number.parseFloat(e.target.value)
+                                            const fee = value - (value * .02);
+                                            TotalAmount.innerHTML = "₱"+fee;
+                                        }
+
+                                        CashOutAmountTbx.addEventListener('input', inputHandler);
+                                        CashOutAmountTbx.addEventListener('propertychange', inputHandler); // for IE8
+                                    </script>
+                                </div>
+                                <div>
+                                    <asp:Button runat="server" CssClass="btn btn-success w-100" Text="Cash Out" ID="CashOutBtn" OnClick="CashOutBtn_Click"/>
+                                </div>
+                            </div>
+                        </asp:Panel>
+                        <div class="container">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-info w-100 my-2" data-toggle="modal" data-target="#cashoutRequestsModal">
+                              Cash Out Requests
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="cashoutRequestsModal" tabindex="-1" role="dialog" aria-labelledby="cashoutRequestsModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="cashoutRequestsModalLabel">Cash-out Requests</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="font-weight-bold">
+                                            <tr>
+                                                <td>Phone Number</td>
+                                                <td>Account Name</td>
+                                                <td>Amount</td>
+                                                <td>Is Paid</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody  class="text-center">
+                                            <% foreach (var cashout in cashouts)
+                                                { %>
+                                            <tr>
+                                                <td><%=cashout["phone_number"] %></td>
+                                                <td><%=cashout["account_name"] %></td>
+                                                <td>₱<%=(float)((int)cashout["amount"] / 100) %></td>
+                                                <td>
+                                                    <input class="form-check-input" type="checkbox" style="pointer-events: none;" <%= cashout["is_done"].ToString() == "1" ? "checked" :"" %>>
+                                                </td>
+                                            </tr>
+                                            <%} %>
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>

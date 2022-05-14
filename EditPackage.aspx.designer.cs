@@ -11,17 +11,8 @@ namespace ipt101_gallery_project
 {
 
 
-    public partial class RViewer
+    public partial class EditPackage
     {
-
-        /// <summary>
-        /// AddPackage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel AddPackage;
 
         /// <summary>
         /// ImageUpl control.
@@ -60,12 +51,12 @@ namespace ipt101_gallery_project
         protected global::System.Web.UI.WebControls.TextBox DescriptionTbx;
 
         /// <summary>
-        /// AddPackageBtn control.
+        /// EditPackageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddPackageBtn;
+        protected global::System.Web.UI.WebControls.Button EditPackageBtn;
     }
 }

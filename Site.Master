@@ -61,8 +61,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./RViewar.aspx">About</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="./About.aspx">About</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="/Services">Services</a></li>
                     </ul>
 
 
@@ -101,11 +101,13 @@
                            
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Account Settings</a>
-                            <a class="dropdown-item" href="./RViewer"><i class="fa-solid fa-gear"></i> Artist Settings</a>
+                            <a class="dropdown-item" href="./AccountSettings"><i data-feather="settings"></i> Account Settings</a>
+                            <a class="dropdown-item" href="./RViewer"><i data-feather="settings"></i> Artist Settings</a>
+                            <% if (user["user_type"].ToString() == "ADMIN" ) {%>
+                                <a class="dropdown-item" href="./AdminCashouts"><i data-feather="external-link"></i> Admin Cashouts</a>
+                            <%} %>
                             <div class="dropdown-divider"></div>
                             <asp:Panel runat="server" DefaultButton="LogoutBtn">
-
                                 <asp:Button runat="server" ID="LogoutBtn" CssClass="dropdown-item" OnClick="LogoutBtn_Click" Text="Logout" />
                             </asp:Panel>
                         </div>
