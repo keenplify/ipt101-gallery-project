@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" EnableEventValidation="false" Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ipt101_gallery_project._Default" %>
+﻿<%@ Page Async="true" EnableEventValidation="false" Title="Viewer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RViewer.aspx.cs" Inherits="ipt101_gallery_project.RViewer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -11,7 +11,6 @@
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="hero-title mb-4">Art Commission</h1>
 
-          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
         </div>
       </div>
     </div>

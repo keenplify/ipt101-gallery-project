@@ -13,6 +13,7 @@
     </asp:PlaceHolder>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
+    <script src="https://kit.fontawesome.com/53a2b7f096.js" crossorigin="anonymous"></script>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -50,33 +51,62 @@
 
         <!-- ======= Header ======= -->
         <nav id="navbar" class="navbar navbar-expand-md fixed-top navbar-fixed-top">
+            <div class="container">
             <a class="navbar-brand text-white" href="/">
-                Art Gallery
+                Art Commission
             </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon bi bi-list mobile-nav-toggle"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav m-auto">
                     <li class="nav-item"><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    </ul>
+
+
+                       <ul class="navbar-nav ml-auto">
+
+                      <div class="input-group" style="margin-right:10px;">
+
+                     <form class="d-flex" role="search">
+                          <input class="form-control me-2 bg-transparent" type="search" placeholder="Search" aria-label="Search">
+                          <button class="border-0 btn btn-outline-success" type="submit" style="border-left:1px solid red"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+
+                 
+
                     <% if (user != null)
                         { %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @<%=user["username"] %>
+                    <li class="nav-item dropdown d-flex">
+                        
+                        <a class="nav-link btn btn-sm btn-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-circle-user p-1"></i><%=user["username"] %>
                         </a>
                         <div class=" dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                 
+                               <a class="dropdown-item p-2" href="#">
+                                  <img class="img-fluid rounded-circle w-25" src="img/man-300x300.png"/>
+                                 <%=user["username"]  %>    
+                                   <span class="badge badge-secondary">Artist</span>
+                                  </a>
+
                             <a class="dropdown-item font-weight-bold" href="./AddWallet">
                                 Wallet
                                 <span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
                             </a>
-                            <a class="dropdown-item" href="#">Another action</a>
+
+                           
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Artist Settings</a>
+                            <div class="dropdown-divider"></div>
                             <asp:Panel runat="server" DefaultButton="LogoutBtn">
+
                                 <asp:Button runat="server" ID="LogoutBtn" CssClass="dropdown-item" OnClick="LogoutBtn_Click" Text="Logout" />
                             </asp:Panel>
                         </div>
@@ -88,13 +118,69 @@
                     <%} %>
                 </ul>
             </div>
+                </div>
         </nav><!-- .navbar -->
+
+
         <div class="body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
 
     </form>
+
+
+
+
+    <!-- Footer -->
+        <footer class="page-footer font-small teal pt-4" style="background-color:slategrey;">
+          
+
+          <div class="container py-3 text-center text-md-left">
+
+    
+            <div class="row">
+
+      
+              <div class="col-md-6 mt-md-0 mt-3">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
+                  repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
+                  harum esse fugiat. Itaque, culpa?</p>
+
+              </div>
+     
+
+              <hr class="clearfix w-100 d-md-none pb-3">
+
+      
+              <div class="col-md-6 mb-md-0 mb-3">
+
+     
+                <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
+                  commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+                  excepturi hic.</p>
+
+              </div>
+  
+
+            </div>
+
+
+          </div>
+
+
+
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="/"> MDBootstrap.com</a>
+      </div>
+
+           
+        </footer>
+<!-- Footer -->
     <script>
       feather.replace()
     </script>
