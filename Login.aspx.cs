@@ -16,6 +16,7 @@ namespace ipt101_gallery_project
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Login");
             try
             {
                 Dictionary<string, object> user = Helpers.User.Login(LoginUsername.Text, LoginPassword.Text);

@@ -60,23 +60,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item"><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="./RViewar.aspx">About</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     </ul>
 
 
                        <ul class="navbar-nav ml-auto">
 
-                      <div class="input-group" style="margin-right:10px;">
+                           <div class="input-group mb-1" style="margin-right:10px;">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-right-0" id="basic-addon1"><i class="fa-solid fa-magnifying-glass text-white"></i></span>
+                              </div>
+                          <input class="form-control me-2 bg-transparent border-left-0" type="search" placeholder="Search" aria-label="Search">
+                            </div>
 
-                     <form class="d-flex" role="search">
-                          <input class="form-control me-2 bg-transparent" type="search" placeholder="Search" aria-label="Search">
-                          <button class="border-0 btn btn-outline-success" type="submit" style="border-left:1px solid red"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-
+                      
                  
 
                     <% if (user != null)
@@ -86,7 +85,7 @@
                         <a class="nav-link btn btn-sm btn-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-circle-user p-1"></i><%=user["username"] %>
                         </a>
-                        <div class=" dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class=" dropdown-menu dropdown-menu-right" style="background-color:whitesmoke" aria-labelledby="navbarDropdown">
                                  
                                <a class="dropdown-item p-2" href="#">
                                   <img class="img-fluid rounded-circle w-25" src="img/man-300x300.png"/>
@@ -103,7 +102,7 @@
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Account Settings</a>
-                            <a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Artist Settings</a>
+                            <a class="dropdown-item" href="./RViewer"><i class="fa-solid fa-gear"></i> Artist Settings</a>
                             <div class="dropdown-divider"></div>
                             <asp:Panel runat="server" DefaultButton="LogoutBtn">
 
@@ -114,7 +113,7 @@
                     <% }
                         else
                         { %>
-                    <li class="nav-item"><a class="nav-link scrollto" href="/Login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto btn btn-sm d-flex btn-danger" href="/Login"><i class="fa-solid fa-arrow-right-to-bracket p-1"></i>Login</a></li>
                     <%} %>
                 </ul>
             </div>

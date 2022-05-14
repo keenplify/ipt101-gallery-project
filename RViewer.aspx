@@ -1,198 +1,239 @@
 ﻿<%@ Page Async="true" EnableEventValidation="false" Title="Viewer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RViewer.aspx.cs" Inherits="ipt101_gallery_project.RViewer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
 
-     <!-- ======= Hero Section ======= -->
-  <div id="hero" class="hero route bg-image" style="background-image: url('assets/img/artbg.jpg'); margin-top: -60px">
-    <div class="overlay-itro"></div>
-    <div class="hero-content display-table">
-      <div class="table-cell">
-        <div class="container">
-          <!--<p class="display-6 color-d">Hello, world!</p>-->
-          <h1 class="hero-title mb-4">Art Commission</h1>
-
+    <h2 class="text-center">Pricing Packages</h2>
+    <div class="text-center">
+    <button type="button" class="btn btn-primary m-auto" data-toggle="modal" data-target="#add">
+        Add Packages
+    </button>
         </div>
+    <br />
+    <div class="container py-3">
+   <div class="row">
+
+  <div class="col-sm-4">
+    <div class="card shadow ">
+        <img class="card-img-top" style="max-height: 15rem;" src="img/images.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Package - Headshot</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+         <span>
+            
+              <button class="btn btn-outline-dark disabled col-6" >P700</button>
+                 
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">Edit</button>
+               <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete"> Delete </button>
+
+          </span>
       </div>
     </div>
-  </div><!-- End Hero Section -->
+  </div>
 
-  <main id="main">
-    <!-- ======= Portfolio Section ======= -->
-    <section id="work" class="portfolio-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-               Art Commission
-              </h3>
-              <p class="subtitle-a fs-1">
-               Art Collections
-              </p>
-              <div class="line-mf"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art2.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 1</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art1.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 2</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 3</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art4.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 4</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art5.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 5</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art6.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 6</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="col-sm-4">
+    <div class="card shadow">
+          <img class="card-img-top" style="max-height: 15rem;" src="img/images (1).jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Package - Headshot</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <span>
+            
+              <button class="btn btn-outline-dark disabled col-6" >P700</button>
+                 
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">Edit</button>
+              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete"> Delete </button>
 
-        </div>
+          </span>
       </div>
-    </section><!-- End Portfolio Section -->
-  </main><!-- End #main -->
+    </div>
+  </div>
+
+       <div class="col-sm-4">
+    <div class="card shadow">
+          <img class="card-img-top" style="max-height: 15rem;" src="img/images.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Package - Headshot</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <span>
+              <button class="btn btn-outline-dark disabled col-6" >P700</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit">Edit</button>
+              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete"> Delete </button>
+
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+
+
+
+
+  
+   
 
     
-    <script>
-        $(function () {
-            var $nav = $(".navbar-fixed-top");
-            $nav.addClass('navbar-transparent');
 
-          $(document).scroll(function () {
-            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-          });
-        });
-    </script>
+
+
+
+<!-- Modal for Add -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title border-bottom-0" id="add">Add Packages</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+          <div class="container input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Upload</span>
+      </div>
+          <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01">
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+
+          <div class="form container">
+         
+              <div class="row">
+                <div class="col">
+                  
+                     <div class="form-group">
+                    <label for="Packages">Packages:</label>
+                    <select class="form-control">
+                     <option>Headshot</option>
+                        <option>Bodyshot</option>
+                        <option>Lowershot</option>
+                          <option>Fullshot</option>
+                    </select>
+                    <small class="form-text text-muted">Choice type of packages</small>
+                  </div>
+
+                </div>
+                <div class="col">
+                  
+                     <div class="form-group">
+                    <label for="Price">Prices:</label>
+                      <input type="text" class="form-control"  placeholder="Price">
+                  </div>
+
+                </div>
+              </div>
+
+          <div class="form-group">
+            <label for="Description">Description:</label>
+            <input type="text" class="form-control"  placeholder="Description">
+          </div>
+         
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal for edit-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit">Edit Packages</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+
+            <div class="container input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Upload</span>
+      </div>
+          <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01">
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+
+          <div class="form container">
+         
+              <div class="row">
+                <div class="col">
+                  
+                     <div class="form-group">
+                    <label for="Packages">Packages:</label>
+                    <select class="form-control">
+                     <option>Headshot</option>
+                        <option>Bodyshot</option>
+                        <option>Lowershot</option>
+                          <option>Fullshot</option>
+                    </select>
+                    <small class="form-text text-muted">Choice type of packages</small>
+                  </div>
+
+                </div>
+                <div class="col">
+                  
+                     <div class="form-group">
+                    <label for="Price">Prices:</label>
+                      <input type="text" class="form-control"  placeholder="Price">
+                  </div>
+
+                </div>
+              </div>
+
+          <div class="form-group">
+            <label for="Description">Description:</label>
+            <input type="text" class="form-control"  placeholder="Description">
+          </div>
+         
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <!-- Modal for delete-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          <div class="container">
+      <i class="fa-solid fa-trash-can " style="color:red; font-size:350%;"></i>
+          <h4 class="py-3">Are you sure?</h4>
+          <p>Do you really want to delete these records? This process cannot be undone</p>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+              </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
 </asp:Content>

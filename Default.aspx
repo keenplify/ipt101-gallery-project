@@ -22,6 +22,7 @@
     <section id="work" class="portfolio-mf sect-pt4 route">
       <div class="container">
         <div class="row">
+
           <div class="col-sm-12">
             <div class="title-box text-center">
               <h3 class="title-a">
@@ -34,12 +35,13 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-4">
             <div class="work-box">
               <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art2.jpg" alt="" class="img-fluid">
+                  <img src="assets/img/art2.jpg" alt="" class="img-fluid" style="max-height: 15rem;">
                 </div>
               </a>
               <div class="work-content">
@@ -59,11 +61,12 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-4 justify-content-center">
             <div class="work-box">
               <a href="assets/img/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art1.jpg" alt="" class="img-fluid">
+                <div class="work-img justify-content-center">
+                  <img src="assets/img/art1.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
                 </div>
               </a>
               <div class="work-content">
@@ -83,11 +86,12 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="work-box">
               <a href="assets/img/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid">
+                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
                 </div>
               </a>
               <div class="work-content">
@@ -107,11 +111,12 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="work-box">
               <a href="assets/img/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art4.jpg" alt="" class="img-fluid">
+                  <img src="assets/img/art4.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem;">
                 </div>
               </a>
               <div class="work-content">
@@ -131,11 +136,12 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="work-box">
               <a href="assets/img/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art5.jpg" alt="" class="img-fluid">
+                  <img src="assets/img/art5.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
                 </div>
               </a>
               <div class="work-content">
@@ -155,11 +161,12 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="work-box">
               <a href="assets/img/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art6.jpg" alt="" class="img-fluid">
+                  <img src="assets/img/art6.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
                 </div>
               </a>
               <div class="work-content">
@@ -183,6 +190,25 @@
         </div>
       </div>
     </section><!-- End Portfolio Section -->
+
+        <nav aria-label="...">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+              <span class="page-link">
+                2
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
   </main><!-- End #main -->
 
     
