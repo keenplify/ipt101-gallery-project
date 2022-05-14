@@ -41,7 +41,7 @@
             <div class="work-box">
               <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art2.jpg" alt="" class="img-fluid" style="max-height: 15rem;">
+                  <img src="assets/img/art2.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%">
                 </div>
               </a>
               <div class="work-content">
@@ -66,7 +66,7 @@
             <div class="work-box">
               <a href="assets/img/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img justify-content-center">
-                  <img src="assets/img/art1.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
+                  <img src="assets/img/art1.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
                 </div>
               </a>
               <div class="work-content">
@@ -91,7 +91,7 @@
             <div class="work-box">
               <a href="assets/img/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
+                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
                 </div>
               </a>
               <div class="work-content">
@@ -116,7 +116,7 @@
             <div class="work-box">
               <a href="assets/img/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art4.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem;">
+                  <img src="assets/img/art4.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%;">
                 </div>
               </a>
               <div class="work-content">
@@ -141,7 +141,7 @@
             <div class="work-box">
               <a href="assets/img/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art5.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
+                  <img src="assets/img/art5.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
                 </div>
               </a>
               <div class="work-content">
@@ -166,7 +166,7 @@
             <div class="work-box">
               <a href="assets/img/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/art6.jpg" alt="" class="img-fluid" style="max-height: 15rem; max-width: 20rem; ">
+                  <img src="assets/img/art6.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
                 </div>
               </a>
               <div class="work-content">
