@@ -36,162 +36,56 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art2.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 1</h2>
-                    <div class="w-more">
+      
+          <div class="row">
+               <div class="col-sm-4">
+                  <a href="./ArtworkViewer" class="text-dark">
+                <div class="card shadow">
+                    <img src="assets/img/work-1.jpg" class="card-img-top" alt="..." style="max-height: 15rem;" >
+                  <div class="card-body">
+                    <h5 class="card-title">Art 1</h5>
+                      <div class="w-more">
                       <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
                 </div>
+                    </a>
               </div>
-            </div>
-          </div>
 
-          <div class="col-md-4 justify-content-center">
-            <div class="work-box">
-              <a href="assets/img/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img justify-content-center">
-                  <img src="assets/img/art1.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 2</h2>
-                    <div class="w-more">
+              <div class="col-sm-4">
+                  <a href="./ArtworkViewer" class="text-dark">
+                <div class="card shadow">
+                    <img src="assets/img/work-2.jpg" class="card-img-top" alt="..." style="max-height: 15rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Art 2</h5>
+                      <div class="w-more">
                       <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
                 </div>
+                    </a>
               </div>
-            </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art3.jpeg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 3</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
+                 <div class="col-sm-4">
+                  <a href="./ArtworkViewer" class="text-dark">
+                <div class="card shadow">
+                    <img src="assets/img/work-3.jpg" class="card-img-top" alt="..." style="max-height: 15rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Art 3</h5>
+                      <div class="w-more">
+                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span> 
                     </div>
                   </div>
                 </div>
+                    </a>
               </div>
-            </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art4.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%;">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 4</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art5.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 5</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/art6.jpg" alt="" class="img-fluid" style="max-height: 15rem; width: 100%; ">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Art 6</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section><!-- End Portfolio Section -->
 
-        <nav aria-label="...">
+        <nav aria-label="..." class="py-5">
           <ul class="pagination justify-content-center">
             <li class="page-item disabled">
               <span class="page-link">Previous</span>
@@ -217,9 +111,9 @@
             var $nav = $(".navbar-fixed-top");
             $nav.addClass('navbar-transparent');
 
-          $(document).scroll(function () {
-            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-          });
+            $(document).scroll(function () {
+                $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            });
         });
     </script>
 </asp:Content>
