@@ -295,14 +295,12 @@
     <Content Include="Assets\vendor\typed.js\typed.js" />
     <Content Include="Assets\vendor\typed.js\typed.min.js" />
     <Content Include="AddWallet.aspx" />
-
     <Content Include="ArtworkViewer.aspx" />
+    <Content Include="CommissionForm.aspx" />
     <Content Include="MyCommission.aspx" />
     <Content Include="Commission.aspx" />
     <Content Include="Profile.aspx" />
-
     <Content Include="EditPackage.aspx" />
-
     <Content Include="RViewer.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -506,13 +504,19 @@
     <Compile Include="AddWallet.aspx.designer.cs">
       <DependentUpon>AddWallet.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="ArtworkViewer.aspx.cs">
       <DependentUpon>ArtworkViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ArtworkViewer.aspx.designer.cs">
       <DependentUpon>ArtworkViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CommissionForm.aspx.cs">
+      <DependentUpon>CommissionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommissionForm.aspx.designer.cs">
+      <DependentUpon>CommissionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyCommission.aspx.cs">
       <DependentUpon>MyCommission.aspx</DependentUpon>
@@ -532,16 +536,15 @@
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-	  <Compile Include="Profile.aspx.designer.cs">
-		  <DependentUpon>Profile.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditPackage.aspx.cs">
       <DependentUpon>EditPackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EditPackage.aspx.designer.cs">
       <DependentUpon>EditPackage.aspx</DependentUpon>
-
     </Compile>
     <Compile Include="RViewer.aspx.cs">
       <DependentUpon>RViewer.aspx</DependentUpon>

@@ -64,16 +64,14 @@
                         { %>
                       <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="./RViewar.aspx">About</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#services">Services</a></li>
-                      <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">Commission</a></li>
+                         <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">Commission</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#services">Messages</a></li>
                     <% }
                         else
                         { %>
-
-                    <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
+                     <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="./RViewar.aspx">About</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#services">Services</a></li>
+             
                     <%} %>
 
 
@@ -118,7 +116,7 @@
                            
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./AccountSettings"><i data-feather="settings"></i> Account Settings</a>
+                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i data-feather="settings"></i> Account Settings</a> </button>
                             <a class="dropdown-item" href="./RViewer"><i data-feather="settings"></i> Artist Settings</a>
                             <% if (user["user_type"].ToString() == "ADMIN" ) {%>
                                 <a class="dropdown-item" href="./AdminCashouts"><i data-feather="external-link"></i> Admin Cashouts</a>
@@ -140,12 +138,121 @@
         </nav><!-- .navbar -->
 
 
+
         <div class="body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
 
     </form>
+
+  <!-- Modal for Accounting Setting -->
+    
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+                             <i class="fa-solid fa-user-gear p-2" style="font-size:30px;"></i>    <h4 class="text-center p-2">Account Setting</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+
+					     
+                            <div class="container">
+                       <div class="accordion shadow-lg" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Change Profile Info
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                          <form>
+                          <div class="form-group">
+                            <label>Firstname</label>
+                            <input type="text" class="form-control"  placeholder="First name">
+           
+                          </div>
+                          <div class="form-group">
+                             <div class="row">
+                                <div class="col">
+                                    <label>Lastname</label>
+                                  <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                                <div class="col">
+                                    <label>Middlename</label>
+                                  <input type="text" class="form-control" placeholder="Middle name">
+                                </div>
+                              </div>
+                          </div>
+                              <div class="form-group">
+                            <label>Birthday</label>
+                            <input type="date" class="form-control"  placeholder="Birthday">
+           
+                          </div>
+
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                           Change Password
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+
+                          <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                          <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+						</div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 
 

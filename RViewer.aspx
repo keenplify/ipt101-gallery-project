@@ -20,7 +20,9 @@
 						<p class="card-text"><%=package["description"] %></p>
 						<span>
 						<button class="btn btn-outline-dark disabled col-6" >₱<%=(float)((int)package["price"] / 100) %></button>
+
 						<a type="button" class="btn btn-success" href="EditPackage?package_guid=<%=package["package_guid"] %>">Edit</a>
+
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<%=package["package_guid"] %>Modal"> Delete </button>
 						</span>
 					</div>
