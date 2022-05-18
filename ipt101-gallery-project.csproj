@@ -297,6 +297,8 @@
     <Content Include="AddWallet.aspx" />
     <Content Include="ArtworkViewer.aspx" />
     <Content Include="CommissionForm.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Message.aspx" />
     <Content Include="MyCommission.aspx" />
     <Content Include="Commission.aspx" />
     <Content Include="Profile.aspx" />
@@ -517,6 +519,20 @@
     </Compile>
     <Compile Include="CommissionForm.aspx.designer.cs">
       <DependentUpon>CommissionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyCommission.aspx.cs">
       <DependentUpon>MyCommission.aspx</DependentUpon>

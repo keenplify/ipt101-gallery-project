@@ -65,7 +65,8 @@
                       <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="./About.aspx">About</a></li>
                          <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">Commission</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#services">Messages</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="./Message">Messages</a></li>
+                                      <li class="nav-item"><a class="nav-link scrollto" href="./Contact">Contacts</a></li>
                     <% }
                         else
                         { %>
@@ -261,43 +262,48 @@
         <footer class="page-footer font-small teal pt-4" style="background-color:slategrey;">
           
 
-          <div class="container py-3 text-center text-md-left d-flex flex-column">
+          <div class="container py-2 text-center text-md-left d-flex flex-column">
 
-                <h5 class="text-uppercase font-weight-bold text-center"> CONTACT US</h5>
-                <p class ="text-center">Have any suggestions? Leave us a message!</p>
-                <ul class="align-self-center">
-                    <li> <span data-feather="phone"></span> :
-                         09301234567
-                    </li>
-                    <li><span data-feather="mail"></span> :
-                         artcommissions@gmail.com
-                    </li>
-                    <li> <span data-feather="facebook"></span> :
-                         @artcommissionsPH
-                    </li>
-                    <li><span data-feather="twitter"></span> :
-                        @artcomissionsPH
-                    </li>
-                </ul>
+             
+
+                
             <div class="row">
 
       
-              <div class="col-md-6 mt-md-0 mt-3">
+              <div class="col-md-7 mt-md-0 mt-3">
 
-                <!-- Footer -->
-                
+            <h5 class=" mb-4"> ART COMMISION</h5>
+                <p class=" text-justify col-11">Art Commission is a free-to-all website established in 2022 by students of Quezon City University in partial fulfillment of their requirements for the subject Integrative Programming and Technologies (IPT101). The aim of the website is to allow artists and commissioners to have a portal where they can browse, sell and buy artworks whether it is traditional or digital.</p>
+              
 
               </div>
      
               <hr class="clearfix w-100 d-md-none pb-3">
       
-              <div class="col-md-6 mb-md-0 mb-3">
+              <div class="col-md-5   mb-md-0 m-auto">
+
+                  <h5 class="text-uppercase font-weight-bold"> CONTACT US</h5>
+                <p >Have any suggestions? Leave us a message!</p>
+                <ul style="list-style: none;">
+                    <li class="mb-2"> <span data-feather="phone"></span> :
+                         09301234567
+                    </li>
+                    <li class="mb-2"><span data-feather="mail"></span> :
+                         artcommissions@gmail.com
+                    </li>
+                    <li class="mb-2"> <span data-feather="facebook"></span> :
+                         @artcommissionsPH
+                    </li>
+                    <li class="mb-2"><span data-feather="twitter"></span> :
+                        @artcomissionsPH
+                    </li>
+                </ul>
 
               </div>
             </div>
           </div>
 
-      <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <div class="footer-copyright text-center py-1">© 2022 Copyright:
         <a href="/">Art Commision</a>
       </div>
 
