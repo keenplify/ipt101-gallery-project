@@ -105,7 +105,9 @@
                                <a class="dropdown-item p-2" href="./Profile">
                                   <img class="img-fluid rounded-circle w-25" src="img/man-300x300.png"/>
                                  <%=user["username"]  %>    
-                                   <span class="badge badge-secondary">Artist</span>
+                                   <% if (user["user_type"].ToString() == "ADMIN"){ %>
+                                   <span class="badge badge-secondary">ADMIN</span>
+                                   <%} %>
                                   </a>
 
                             <a class="dropdown-item font-weight-bold" href="./AddWallet">

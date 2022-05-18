@@ -2,39 +2,34 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <%if (artwork != null)
+        {%>
     <div class="container">
         <div class="row">
             <div class="col-md-5 m-auto" >
-                <img class="img-fluid shadow-lg rounded" src="img/623467453aa95809d9b131d0_The_Scream_by_Edvard_Munch,_1893_-_Nasjonalgalleriet.png" style="max-height:35rem;"/>
+                <img class="img-fluid shadow-lg rounded" src="<%=artwork["image_location"] %>" style="max-height:35rem;"/>
             </div>
 
         
 
               <div class="col-md-5 py-4" >
-                <h1 style="color: orangered; font-size: 250%;">ART 1</h1>
+                <h1 style="color: orangered; font-size: 250%;"><%=artwork["title"] %></h1>
                    <div class="w-more">
                        <span class="w-ctegory"><i class="fa-solid fa-star"></i></span> <span class="w-date"><i class="fa-solid fa-star"></i></span>  <span class="w-date"><i class="fa-solid fa-star"></i></span>  <span class="w-date"><i class="fa-solid fa-star"></i></span>  <span class="w-date"><i class="fa-solid fa-star"></i></span>   
                     </div>
-                  <h5>Crisostomo</h5>
-                     <b><h5>Php 7,000</h5></b>     
+                  <h5>Uploaded by: <a class="badge badge-primary" href="Profile?user_guid=<%=artwork["user_guid"] %>"><%=artwork["firstName"] %> <%=artwork["lastName"] %></a></h5>  
                   <hr style="border-top: 1px solid #8c8b8b;"/>
-
-                    <h5>Year Completed</h5>
-                    <p>2021</p>
                    
                     <h5>Medium</h5>
-                    <p>Arcylic on Canvas</p>
+                    <p><%=artwork["medium"] %></p>
                   
-                   <h5>Dimension</h5>
-                    <p>24" x 24"</p>
+                   <h5>Dimensions</h5>
+                    <p><%=artwork["dimensions"] %></p>
                          <hr style="border-top: 1px solid #8c8b8b;"/>
                     <h5>Description</h5>
-                    <ul>
-                 
-                        <li>Limited edition print on tiles with original artist signature and COA</li>
-                        <li>With Certificate of Authenticity</li>
-                        <li>Actual frame may vary from room mock ups</li>
-                    </ul>
+                    <p>
+                        <%=artwork["description"] %>
+                    </p>
 
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Comments</label>
@@ -118,5 +113,10 @@
             </div>
     </div>
     <br />
+    <%}
+        else
+        {%>
+    <h1 class="text-center m-5">Artwork not found!</h1>
+    <%} %>
 
 </asp:Content>

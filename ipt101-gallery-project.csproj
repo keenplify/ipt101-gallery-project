@@ -297,6 +297,7 @@
     <Content Include="AddWallet.aspx" />
     <Content Include="ArtworkViewer.aspx" />
     <Content Include="CommissionForm.aspx" />
+    <Content Include="AddArtwork.aspx" />
     <Content Include="MyCommission.aspx" />
     <Content Include="Commission.aspx" />
     <Content Include="Profile.aspx" />
@@ -518,6 +519,14 @@
     <Compile Include="CommissionForm.aspx.designer.cs">
       <DependentUpon>CommissionForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddArtwork.aspx.cs">
+      <DependentUpon>AddArtwork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddArtwork.aspx.designer.cs">
+      <DependentUpon>AddArtwork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Numbers.cs" />
     <Compile Include="MyCommission.aspx.cs">
       <DependentUpon>MyCommission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -592,13 +601,6 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -615,7 +617,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
