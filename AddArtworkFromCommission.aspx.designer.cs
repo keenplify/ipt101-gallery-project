@@ -11,26 +11,17 @@ namespace ipt101_gallery_project
 {
 
 
-    public partial class CommissionForm
+    public partial class AddArtworkFromCommission
     {
 
         /// <summary>
-        /// AddCommissionPnl control.
+        /// AddArtworkPnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel AddCommissionPnl;
-
-        /// <summary>
-        /// PackagesList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PackagesList;
+        protected global::System.Web.UI.WebControls.Panel AddArtworkPnl;
 
         /// <summary>
         /// TitleTbx control.
@@ -51,39 +42,39 @@ namespace ipt101_gallery_project
         protected global::System.Web.UI.WebControls.TextBox DescriptionTbx;
 
         /// <summary>
-        /// refImage control.
+        /// MediumTbx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload refImage;
+        protected global::System.Web.UI.WebControls.TextBox MediumTbx;
 
         /// <summary>
-        /// DeadlineTbx control.
+        /// DimensionsTbx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DeadlineTbx;
+        protected global::System.Web.UI.WebControls.TextBox DimensionsTbx;
 
         /// <summary>
-        /// Visibility control.
+        /// ImageUpl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList Visibility;
+        protected global::System.Web.UI.WebControls.FileUpload ImageUpl;
 
         /// <summary>
-        /// SubmitCommissionBtn control.
+        /// AddArtworkBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SubmitCommissionBtn;
+        protected global::System.Web.UI.WebControls.Button AddArtworkBtn;
     }
 }

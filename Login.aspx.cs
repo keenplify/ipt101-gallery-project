@@ -32,7 +32,11 @@ namespace ipt101_gallery_project
         {
             try
             {
-                Helpers.User.Register(regFirstName.Text, regLastName.Text, regLastName.Text, regBirthday.Text, regEmail.Text, regPass.Text);
+                Helpers.User.Register(regFirstName.Text, regLastName.Text, regLastName.Text, regBirthday.Text, regEmail.Text, regUsername.Text, regPass.Text);
+
+                //Login after register
+                Dictionary<string, object> user = Helpers.User.Login(LoginUsername.Text, LoginPassword.Text);
+
                 Response.Redirect("/");
             }
             catch (InvalidOperationException error)

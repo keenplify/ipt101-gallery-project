@@ -226,8 +226,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Actions\SetArtworkRating.aspx" />
+    <Content Include="Actions\changeCommissionStatus.aspx" />
+    <Content Include="Actions\CancelCommission.aspx" />
     <Content Include="Actions\DeletePackage.aspx" />
+    <Content Include="AdminUsersList.aspx" />
     <Content Include="AdminCashouts.aspx" />
+    <Content Include="Admin\ToggleActiveStatus.aspx" />
     <Content Include="Admin\ToggleDoneStatus.aspx" />
     <Content Include="Assets\css\style.css" />
     <Content Include="Assets\css\stylelogin.css" />
@@ -296,7 +301,9 @@
     <Content Include="Assets\vendor\typed.js\typed.min.js" />
     <Content Include="AddWallet.aspx" />
     <Content Include="ArtworkViewer.aspx" />
+    <Content Include="AddArtworkFromCommission.aspx" />
     <Content Include="CommissionForm.aspx" />
+    <Content Include="AddArtwork.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Message.aspx" />
     <Content Include="MyCommission.aspx" />
@@ -469,6 +476,27 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\SetArtworkRating.aspx.cs">
+      <DependentUpon>SetArtworkRating.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\SetArtworkRating.aspx.designer.cs">
+      <DependentUpon>SetArtworkRating.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\changeCommissionStatus.aspx.cs">
+      <DependentUpon>changeCommissionStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\changeCommissionStatus.aspx.designer.cs">
+      <DependentUpon>changeCommissionStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\CancelCommission.aspx.cs">
+      <DependentUpon>CancelCommission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\CancelCommission.aspx.designer.cs">
+      <DependentUpon>CancelCommission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Actions\DeletePackage.aspx.cs">
       <DependentUpon>DeletePackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -476,12 +504,26 @@
     <Compile Include="Actions\DeletePackage.aspx.designer.cs">
       <DependentUpon>DeletePackage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminUsersList.aspx.cs">
+      <DependentUpon>AdminUsersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUsersList.aspx.designer.cs">
+      <DependentUpon>AdminUsersList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminCashouts.aspx.cs">
       <DependentUpon>AdminCashouts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminCashouts.aspx.designer.cs">
       <DependentUpon>AdminCashouts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ToggleActiveStatus.aspx.cs">
+      <DependentUpon>ToggleActiveStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ToggleActiveStatus.aspx.designer.cs">
+      <DependentUpon>ToggleActiveStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ToggleDoneStatus.aspx.cs">
       <DependentUpon>ToggleDoneStatus.aspx</DependentUpon>
@@ -513,6 +555,13 @@
     <Compile Include="ArtworkViewer.aspx.designer.cs">
       <DependentUpon>ArtworkViewer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddArtworkFromCommission.aspx.cs">
+      <DependentUpon>AddArtworkFromCommission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddArtworkFromCommission.aspx.designer.cs">
+      <DependentUpon>AddArtworkFromCommission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CommissionForm.aspx.cs">
       <DependentUpon>CommissionForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,6 +569,14 @@
     <Compile Include="CommissionForm.aspx.designer.cs">
       <DependentUpon>CommissionForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddArtwork.aspx.cs">
+      <DependentUpon>AddArtwork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddArtwork.aspx.designer.cs">
+      <DependentUpon>AddArtwork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Numbers.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,13 +665,6 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -631,7 +681,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />

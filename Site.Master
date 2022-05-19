@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - Art Commission</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -62,11 +62,10 @@
                 <ul class="navbar-nav m-auto">  
                      <% if (user != null)
                         { %>
-                      <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./About.aspx">About</a></li>
-                         <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">Commission</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./Message">Messages</a></li>
-                                      <li class="nav-item"><a class="nav-link scrollto" href="./Contact">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">My Commissions</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="./Commission">Artist Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="/Contact">Messages</a></li>
                     <% }
                         else
                         { %>
@@ -106,21 +105,35 @@
                                <a class="dropdown-item p-2" href="./Profile">
                                   <img class="img-fluid rounded-circle w-25" src="img/man-300x300.png"/>
                                  <%=user["username"]  %>    
-                                   <span class="badge badge-secondary">Artist</span>
+                                   <% if (user["user_type"].ToString() == "ADMIN")
+                                       { %>
+                                   <span class="badge badge-secondary">ADMIN</span>
+                                   <%}
+                                       else if ((bool)user["is_active"])
+                                       {%>
+                                   <span class="badge badge-secondary">ACTIVE</span>
+                                   <%}
+                                       else
+                                       { %>
+                                   <span class="badge badge-dark">INACTIVE</span>
+                                   <%} %>
                                   </a>
-
+                            <%if ((bool)user["is_active"]) { %>
                             <a class="dropdown-item font-weight-bold" href="./AddWallet">
                                 Wallet
                                 <span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
                             </a>
-
-                           
-
+                            <%} %>
                             <div class="dropdown-divider"></div>
                             <button type="button" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i data-feather="settings"></i> Account Settings</a> </button>
+                            <% if ((bool)user["is_active"])
+                                {%>
                             <a class="dropdown-item" href="./RViewer"><i data-feather="settings"></i> Artist Settings</a>
+                            <div class="dropdown-divider"></div>
                             <% if (user["user_type"].ToString() == "ADMIN" ) {%>
                                 <a class="dropdown-item" href="./AdminCashouts"><i data-feather="external-link"></i> Admin Cashouts</a>
+                                <a class="dropdown-item" href="./AdminUsersList"><i data-feather="user"></i> Admin Users List</a>
+                            <%} %>
                             <%} %>
                             <div class="dropdown-divider"></div>
                             <asp:Panel runat="server" DefaultButton="LogoutBtn">

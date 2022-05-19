@@ -43,9 +43,40 @@ namespace ipt101_gallery_project.Helpers
             return user;
         }
 
-        public static void Register(string firstName, string middleName, string lastName, string birthday, string email, string password)
+        public static void Register(string firstName, string middleName, string lastName, string birthday, string email, string username, string password)
         {
+            SqlConnection connection = Database.Connect();
 
+            string query = "INSERT INTO users_tbl (" +
+                "firstName," +
+                "middleName," +
+                "lastName," +
+                "birthday," +
+                "email," +
+                "username," +
+                "password_hash," +
+                "user_type" +
+                ") VALUES (" +
+                "@firstName ," +
+                "@middleName ," +
+                "@lastName ," +
+                "@birthday ," +
+                "@email ," +
+                "@username ," +
+                "@password_hash, " +
+                "'USER'" +
+                ")";
+            
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@middleName", middleName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@birthday", birthday);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password_hash", BCrypt.Net.BCrypt.HashPassword(password, 10));
+
+            cmd.ExecuteNonQuery();
         }
 
         public static Dictionary<string, object> AutoLogin(bool redirect=true)

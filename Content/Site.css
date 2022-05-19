@@ -7,6 +7,10 @@
     height: auto !important;
 }
 
+.artwork-preview {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 
 ::-webkit-scrollbar {
     width: 5px;

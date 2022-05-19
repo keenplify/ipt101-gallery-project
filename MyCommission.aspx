@@ -3,81 +3,118 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
         <div class="container">
-            <h1 class="text-center py-4"> My Commission </h1>
-            
-
-
+            <h1 class="text-center py-4"> My Commission Requests </h1>
 
             <table class="table table-striped border table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Artist</th>
-                  <th scope="col">Price Tier</th>
+                  <th scope="col">Artist Name</th>
+                  <th scope="col">Commission Title</th>
+                  <th scope="col">Artwork Package</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Preview</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
+                <%foreach (var commission in myCommissions) { %>
                 <tr>
-                  <th scope="row">Charle Darwin</th>
-                  <td>P1000</td>
-                  <td>
-                      <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Done
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Requesting</a>
-                        <a class="dropdown-item" href="#">Processing</a>
-                        <a class="dropdown-item" href="#">Done</a>
+	                <td scope="row">
+                        <a href="Profile?user_guid=<%=commission["user_guid"] %>">
+                            <%=commission["firstName"] %> <%=commission["lastName"] %>
+                        </a>
+	                </td>
+                    <td scope="row">
+                        <%=commission["title"] %>
+	                </td>
+	                <td>
+                        <%=commission["package_title"] %>
+                        <span class="badge badge-info">
+                            (₱<%=(double)Double.Parse(commission["package_price"].ToString()) / 100 %>)
+                        </span>
+	                </td>
+	                <td>
+		                <%=commission["status"] %>
+	                </td>
+	                <td class="d-flex flex-column">
+		                <!-- Button trigger modal -->
+                        <a href="Message?user_guid=<%=commission["artist_guid"] %>" class="btn btn-info btn-sm mb-1">Message Artist</a>
+                        <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#<%=commission["commission_guid"] %>Modal">
+                          More Details
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="<%=commission["commission_guid"] %>Modal" tabindex="-1" role="dialog" aria-labelledby="<%=commission["commission_guid"] %>Title" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="<%=commission["commission_guid"] %>Title"><%=commission["title"] %></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p style="word-wrap: break-word">
+                                    <span class="badge badge-info mr-2">DESCRIPTION</span><%=commission["description"] %>
+                                </p>
+                                <div>
+                                    <span class="badge badge-info mr-2">REFERENCE IMAGE</span>
+                                    <img src="<%=commission["reference_image_location"] %>" class="img-fluid"/>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                    </div>
+                        
+                        <%if (commission["status"].ToString() != "FINISHED")
+                            {%>
+                            <%if (commission["status"].ToString() == "REQUESTED") { %>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#Cancel<%=commission["commission_guid"] %>Modal">
+                                Cancel Commission
+                            </button>
 
-                  </td>
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  Upload
-                                </td>                </tr>
-                <tr>
-                  <th scope="row">Kuya Tupe</th>
-                  <td>P1000</td>
-                  <td>
-
-                      <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Done
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <a class="dropdown-item" href="#">Requesting</a>
-                        <a class="dropdown-item" href="#">Processing</a>
-                        <a class="dropdown-item" href="#">Done</a>
-                    </div>
-                </div>
-
-                  </td>
-                  <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Upload
-                </td>
+                            <!-- Modal -->
+                            <div class="modal fade" id="Cancel<%=commission["commission_guid"] %>Modal" tabindex="-1" role="dialog" aria-labelledby="Cancel<%=commission["commission_guid"] %>Title" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="Cancel<%=commission["commission_guid"] %>Title">Cancel Commission</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>
+                                        This will cancel the commission <span class="font-weight-bold font-italic">"<%=commission["title"] %>"</span>. Are you sure to do this action?
+                                      </p>
+                                      <small>
+                                        (This will also return the full amount of artwork you've paid before)
+                                      </small>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="Actions/CancelCommission?commission_guid=<%=commission["commission_guid"] %>" class="btn btn-danger">Cancel Commission</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <%} else { %>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary btn-sm mb-1 disabled" disabled>
+                                Cancel Commission
+                            </button>
+                            <%} %>
+                        <%}
+                            else
+                            { %>
+                        <a href="ArtworkViewer?artwork_guid=<%=commission["artwork_guid"] %>" class="btn btn-success btn-sm mb-1">View Artwork</a>
+                        <%} %>
+	                </td>
                 </tr>
-                <tr>
-                  <th scope="row">Alden Ruben</th>
-                  <td>P1000</td>
-                  <td>
-
-                          <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Done
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <a class="dropdown-item" href="#">Requesting</a>
-                        <a class="dropdown-item" href="#">Processing</a>
-                        <a class="dropdown-item" href="#">Done</a>
-                    </div>
-                </div>
-
-                  </td>
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  Upload
-                </td>         </tr>
+                <%} %>
               </tbody>
             </table>
                 </div>

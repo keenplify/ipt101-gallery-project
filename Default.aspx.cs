@@ -5,20 +5,30 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
 
 namespace ipt101_gallery_project
 {
     public partial class _Default : Page
     {
+        protected List<Dictionary<string, object>> artworks = new List<Dictionary<string, object>>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
+            var artworkCmd = new SqlCommand("SELECT TOP 16 * FROM artworks_tbl LEFT JOIN users_tbl ON artworks_tbl.created_by=users_tbl.user_guid WHERE visibility='PUBLIC' ORDER BY created_at DESC", Helpers.Database.Connect());
 
-        protected void Pay_Click(object sender, EventArgs e)
-        {
+            var artworkReader = artworkCmd.ExecuteReader();
 
-            var user = Helpers.User.AutoLogin();
-            Helpers.Paymongo.CreateTransaction(50050, "gcash", (string)user["user_guid"]);
+            while (artworkReader.Read())
+            {
+                var artwork = new Dictionary<string, object>();
+                for (int lp = 0; lp < artworkReader.FieldCount; lp++)
+                {
+                    artwork.Add(artworkReader.GetName(lp), artworkReader.GetValue(lp));
+                }
+
+                artworks.Add(artwork);
+            }
         }
     }
 }

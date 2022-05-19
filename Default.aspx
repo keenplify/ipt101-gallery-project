@@ -37,72 +37,26 @@
         </div>
 
       
-          <div class="row">
-               <div class="col-sm-4">
-                  <a href="./ArtworkViewer" class="text-dark">
-                <div class="card shadow">
-                    <img src="assets/img/work-1.jpg" class="card-img-top" alt="..." style="max-height: 15rem;" >
-                  <div class="card-body">
-                    <h5 class="card-title">Art 1</h5>
-                      <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
-                    </div>
-                  </div>
-                </div>
-                    </a>
-              </div>
-
+          <div class="row mb-5">
+              <% foreach (var artwork in artworks)
+                  {%>
               <div class="col-sm-4">
-                  <a href="./ArtworkViewer" class="text-dark">
+                  <a href="./ArtworkViewer?artwork_guid=<%=artwork["artwork_guid"] %>" class="text-dark">
                 <div class="card shadow">
-                    <img src="assets/img/work-2.jpg" class="card-img-top" alt="..." style="max-height: 15rem;">
+                    <img src="<%=artwork["image_location"] %>" class="card-img-top" alt="..." style="max-height: 15rem; object-fit: contain" >
                   <div class="card-body">
-                    <h5 class="card-title">Art 2</h5>
+                    <h5 class="card-title"><%=artwork["title"] %></h5>
                       <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span>
+                      <span class="w-ctegory">@<%=artwork["username"] %></span>  <span class="w-date"><%=artwork["created_at"].ToString().Length > 0 ? "/ " + DateTime.Parse(artwork["created_at"].ToString()).ToLongDateString() : "" %></span>
                     </div>
                   </div>
                 </div>
                     </a>
               </div>
-
-                 <div class="col-sm-4">
-                  <a href="./ArtworkViewer" class="text-dark">
-                <div class="card shadow">
-                    <img src="assets/img/work-3.jpg" class="card-img-top" alt="..." style="max-height: 15rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Art 3</h5>
-                      <div class="w-more">
-                      <span class="w-ctegory">Artist Name</span> / <span class="w-date">Date Created</span> 
-                    </div>
-                  </div>
-                </div>
-                    </a>
-              </div>
-
+              <%} %>
             </div>
-
       </div>
     </section><!-- End Portfolio Section -->
-
-        <nav aria-label="..." class="py-5">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active">
-              <span class="page-link">
-                2
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
   </main><!-- End #main -->
 
     
