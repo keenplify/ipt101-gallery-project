@@ -304,6 +304,8 @@
     <Content Include="AddArtworkFromCommission.aspx" />
     <Content Include="CommissionForm.aspx" />
     <Content Include="AddArtwork.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Message.aspx" />
     <Content Include="MyCommission.aspx" />
     <Content Include="Commission.aspx" />
     <Content Include="Profile.aspx" />
@@ -575,6 +577,20 @@
       <DependentUpon>AddArtwork.aspx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Numbers.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyCommission.aspx.cs">
       <DependentUpon>MyCommission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
