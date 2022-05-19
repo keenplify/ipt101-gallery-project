@@ -8,14 +8,14 @@ namespace ipt101_gallery_project.Helpers
 {
     public class Database
     {
-        public static SqlConnection Connect()
-        {
-            string ConnectString = $"Data Source={Connection.HOSTNAME};" +
+        public static string ConnectString = $"Data Source={Connection.HOSTNAME};" +
                 $"Initial Catalog={Connection.DATABASE};" +
                 $"Persist Security Info=True;" +
                 $"TrustServerCertificate=True;" +
                 $"User ID={Connection.USERNAME};" +
                 $"Password={Connection.PASSWORD}";
+        public static SqlConnection Connect()
+        {
 
             SqlConnection connection = new SqlConnection(ConnectString);
 

@@ -55,8 +55,8 @@
 													<i class="input-icon uil uil-user"></i>
 												</div>
 												<div class="row">
-													<div class="col-md-6">
-														<div class="form-group mt-2">
+													<div class="col-md-6 mt-1">
+														<div class="form-group">
 															<asp:TextBox runat="server" type="text" name="logmiddlename" class="form-style" placeholder="Middle Name" id="regMiddleName" autocomplete="off"/>
 															<i class="input-icon uil uil-user"></i>
 														</div>

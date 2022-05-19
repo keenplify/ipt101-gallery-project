@@ -13,5 +13,32 @@ namespace ipt101_gallery_project
 
     public partial class ArtworkViewer
     {
+
+        /// <summary>
+        /// AddCommentPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AddCommentPnl;
+
+        /// <summary>
+        /// CommentTbx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CommentTbx;
+
+        /// <summary>
+        /// AddCommentBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddCommentBtn;
     }
 }

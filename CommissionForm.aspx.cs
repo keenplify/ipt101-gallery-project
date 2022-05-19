@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace ipt101_gallery_project
 {
@@ -71,11 +72,17 @@ namespace ipt101_gallery_project
 
         protected void SubmitCommissionBtn_Click(object sender, EventArgs e)
         {
-            if (PackagesList.Text.Length == 0) error += "Package is required!";
-            if (TitleTbx.Text.Length == 0) error += "Title is required!";
-            if (DescriptionTbx.Text.Length == 0) error += "Description is required!";
-            if (!refImage.HasFile) error += "Reference image is required!";
+            if (PackagesList.Text.Length == 0) error += "Package is required!\n";
+            if (TitleTbx.Text.Length == 0) error += "Title is required!\n";
+            if (DescriptionTbx.Text.Length == 0) error += "Description is required!\n";
+            if (!refImage.HasFile) error += "Reference image is required!\n";
 
+            // Check if user has enough money for commission
+            double wallet = double.Parse(user["wallet"].ToString()) / 100;
+            var package = packages.Find(v => v["package_guid"].ToString() == PackagesList.Text);
+            double price = double.Parse(package["price"].ToString()) / 100;
+
+            if (wallet < price) error += "Not enough money in wallet!\n";
 
             if (error.Length > 0) return;
 
@@ -90,12 +97,11 @@ namespace ipt101_gallery_project
             {
                 throw;
             }
-
+            SqlConnection connection = Helpers.Database.Connect();
+            var transaction = connection.BeginTransaction();
             // Proceed to sql
             try
             {
-                SqlConnection connection = Helpers.Database.Connect();
-
                 SqlCommand cmd = new SqlCommand((
                     DeadlineTbx.Text.Length > 0 ?
                         "INSERT INTO commissions_tbl (created_by, artist_guid, title, package_guid, description, reference_image_location, visibility, deadline) VALUES (@createdBy, @artistGuid, @title, @packageGuid, @description, @referenceImageLocation, @visibility, @deadline)" : //Has deadline
@@ -108,14 +114,31 @@ namespace ipt101_gallery_project
                 cmd.Parameters.AddWithValue("@visibility", Visibility.Text);
                 cmd.Parameters.AddWithValue("@createdBy", user["user_guid"].ToString());
                 cmd.Parameters.AddWithValue("@artistGuid", artist["user_guid"].ToString());
+                cmd.Transaction = transaction;
                 if (DeadlineTbx.Text.Length > 0) cmd.Parameters.AddWithValue("@deadline", DeadlineTbx.Text);
 
-                cmd.ExecuteNonQuery();
+                SqlCommand updateArtistWallet = new SqlCommand("UPDATE users_tbl SET wallet=wallet + @price WHERE user_guid=@userGuid", connection);
+                updateArtistWallet.Parameters.AddWithValue("@price", (int)price*100);
+                updateArtistWallet.Parameters.AddWithValue("@userGuid", artist["user_guid"]);
+                updateArtistWallet.Transaction = transaction;
 
+                SqlCommand updateClientWallet = new SqlCommand("UPDATE users_tbl SET wallet=wallet - @price WHERE user_guid=@userGuid",  connection);
+                updateClientWallet.Parameters.AddWithValue("@price", (int)price * 100);
+                updateClientWallet.Parameters.AddWithValue("@userGuid", user["user_guid"]);
+                updateClientWallet.Transaction = transaction;
+
+                updateArtistWallet.ExecuteNonQuery();
+                updateClientWallet.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception err)
             {
-                throw;
+                transaction.Rollback();
+                throw err;
+            } finally
+            {
+                transaction.Commit();
+                connection.Close();
             }
 
             // Redirect

@@ -17,11 +17,29 @@
                         <h1 class="text-white font-weight-bold text-uppercase" style="font-size: 75px;">
                             <%=_user["firstName"] %> <%=_user["lastName"] %>
                         </h1>
-                        <h4 class="text-white font-weight-normal">@<%=_user["username"] %></h4>
-
+                        <h4 class="text-white font-weight-normal">
+                            @<%=_user["username"] %>
+                        </h4>
+                         <% if ((bool)_user["is_active"])
+                            {%>
+                        <span class="badge badge-info d-inline-block">
+                            <span class="d-flex align-items-center flex-grow-0 w-auto h-100">
+                                <span data-feather="check-circle" class="mr-2"></span> This user is active and is verified.
+                            </span>
+                        </span>
+                        <%} else {%>
+                        <span class="badge badge-secondary d-inline-block">
+                            <span class="d-flex align-items-center flex-grow-0 w-auto h-100">
+                                <span data-feather="x-circle" class="mr-2"></span> This user is not yet active
+                            </span>
+                        </span>
+                        <%} %>
+                        
                      <div class="d-flex align-item-center justify-content-center justify-content-lg-start pt-2">
                         
-                        <%if (isSameUser) {%>
+                        <% if ((bool)_user["is_active"] && (bool)user["is_active"])
+                            {%>
+                         <%if (isSameUser) {%>
                          <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success m-2 shadow" data-toggle="modal" data-target="#exampleModal">
                             <span data-feather="upload" class="mr-2"></span>
@@ -74,6 +92,7 @@
                             <span data-feather="plus" class="mr-2"></span>
                             Request Commission
                         </a>
+                         <%} %>
                          <%} %>
                     </div>
                     </div>
