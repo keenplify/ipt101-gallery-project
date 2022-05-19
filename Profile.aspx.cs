@@ -102,10 +102,12 @@ namespace ipt101_gallery_project
                 cmd.Parameters.AddWithValue("@created_by", user["user_guid"].ToString());
                 cmd.Parameters.AddWithValue("@image_location", "/Uploads/" + fileName);
                 cmd.ExecuteNonQuery();
+
             } catch
             {
                 throw;
             }
+            Response.Redirect(Request.RawUrl, true);
         }
     }
 }

@@ -40,7 +40,7 @@
           <div class="row mb-5">
               <% foreach (var artwork in artworks)
                   {%>
-              <div class="col-sm-4">
+              <div class="col-sm-4 mb-3">
                   <a href="./ArtworkViewer?artwork_guid=<%=artwork["artwork_guid"] %>" class="text-dark">
                 <div class="card shadow">
                     <img src="<%=artwork["image_location"] %>" class="card-img-top" alt="..." style="max-height: 15rem; object-fit: contain" >

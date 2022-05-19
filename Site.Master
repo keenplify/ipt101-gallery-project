@@ -1,330 +1,308 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ipt101_gallery_project.SiteMaster" %>
-
 <!DOCTYPE html>
-
 <html lang="en">
-<head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Art Commission</title>
-
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
-
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <script src="https://kit.fontawesome.com/53a2b7f096.js" crossorigin="anonymous"></script>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'><link rel="stylesheet" href="./style.css">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-
-    <asp:contentPlaceholder id="head" runat="server" />
-    <script src="https://unpkg.com/feather-icons"></script>
-</head>
-<body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
-
-        <!-- ======= Header ======= -->
-        <nav id="navbar" class="navbar navbar-expand-md fixed-top navbar-fixed-top">
-            <div class="container">
-            <a class="navbar-brand text-white" href="/">
-                Art Commission
-            </a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon bi bi-list mobile-nav-toggle"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav m-auto">  
-                     <% if (user != null)
-                        { %>
-                    <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">My Commissions</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./Commission">Artist Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="/Contact">Messages</a></li>
-                    <% }
-                        else
-                        { %>
-                     <li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="./About.aspx">About</a></li>
-             
-                    <%} %>
-
-
-
-           
-
-                    </ul>
-
-
-                       <ul class="navbar-nav ml-auto">
-
-                           <div class="input-group mb-1" style="margin-right:10px;">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text bg-transparent border-right-0" id="basic-addon1"><i class="fa-solid fa-magnifying-glass text-white"></i></span>
-                              </div>
-                          <input class="form-control me-2 bg-transparent border-left-0" type="search" placeholder="Search" aria-label="Search" style="height:40px">
-                            </div>
-
-                      
-                 
-
-                    <% if (user != null)
-                        { %>
-                    <li class="nav-item dropdown d-flex">
-                        
-                        <a class="nav-link btn btn-sm btn-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-solid fa-circle-user p-1"></i><%=user["username"] %>
-                        </a>
-                        <div class=" dropdown-menu dropdown-menu-right" style="background-color:whitesmoke" aria-labelledby="navbarDropdown">
-                                 
-                               <a class="dropdown-item p-2" href="./Profile">
-                                  <img class="img-fluid rounded-circle w-25" src="img/man-300x300.png"/>
-                                 <%=user["username"]  %>    
-                                   <% if (user["user_type"].ToString() == "ADMIN")
-                                       { %>
-                                   <span class="badge badge-secondary">ADMIN</span>
-                                   <%}
-                                       else if ((bool)user["is_active"])
-                                       {%>
-                                   <span class="badge badge-secondary">ACTIVE</span>
-                                   <%}
-                                       else
-                                       { %>
-                                   <span class="badge badge-dark">INACTIVE</span>
-                                   <%} %>
-                                  </a>
-                            <%if ((bool)user["is_active"]) { %>
-                            <a class="dropdown-item font-weight-bold" href="./AddWallet">
-                                Wallet
-                                <span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
-                            </a>
-                            <%} %>
-                            <div class="dropdown-divider"></div>
-                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i data-feather="settings"></i> Account Settings</a> </button>
-                            <% if ((bool)user["is_active"])
-                                {%>
-                            <a class="dropdown-item" href="./RViewer"><i data-feather="settings"></i> Artist Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <% if (user["user_type"].ToString() == "ADMIN" ) {%>
-                                <a class="dropdown-item" href="./AdminCashouts"><i data-feather="external-link"></i> Admin Cashouts</a>
-                                <a class="dropdown-item" href="./AdminUsersList"><i data-feather="user"></i> Admin Users List</a>
-                            <%} %>
-                            <%} %>
-                            <div class="dropdown-divider"></div>
-                            <asp:Panel runat="server" DefaultButton="LogoutBtn">
-                                <asp:Button runat="server" ID="LogoutBtn" CssClass="dropdown-item" OnClick="LogoutBtn_Click" Text="Logout" />
-                            </asp:Panel>
-                        </div>
-                    </li>
-                    <% }
-                        else
-                        { %>
-                    <li class="nav-item"><a class="nav-link scrollto btn btn-sm d-flex btn-danger" href="/Login"><i class="fa-solid fa-arrow-right-to-bracket p-1"></i>Login</a></li>
-                    <%} %>
-                </ul>
-            </div>
-                </div>
-        </nav><!-- .navbar -->
-
-
-
-        <div class="body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-
-    </form>
-
-  <!-- Modal for Accounting Setting -->
-    
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<head runat="server">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%: Page.Title %> - Art Commission</title>
+		<asp:PlaceHolder runat="server">
+			<%: Scripts.Render("~/bundles/modernizr") %>
+		</asp:PlaceHolder>
+		<webopt:bundlereference runat="server" path="~/Content/css" />
+		<script src="https://kit.fontawesome.com/53a2b7f096.js" crossorigin="anonymous"></script>
+		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+		<link rel="stylesheet" href="./style.css">
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<asp:contentPlaceholder id="head" runat="server" />
+		<script src="https://unpkg.com/feather-icons"></script>
+	</head>
+	<body>
+		
+		<form runat="server">
+			<asp:ScriptManager runat="server">
+				<Scripts>
+					<%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+					<%--Framework Scripts--%>
+					<asp:ScriptReference Name="MsAjaxBundle" />
+					<asp:ScriptReference Name="jquery" />
+					<asp:ScriptReference Name="bootstrap" />
+					<asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+					<asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+					<asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+					<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+					<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+					<asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+					<asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+					<asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+					<asp:ScriptReference Name="WebFormsBundle" />
+					<%--Site Scripts--%>
+				</Scripts>
+			</asp:ScriptManager>
+			<!-- ======= Header ======= -->
+			<%if (errorLbl.Text.Length > 0) {%>
+			<script type="text/javascript">
+                $(window).on('load', function () {
+                    $('#errorModal').modal('show');
+                });
+            </script>
+			<div class="modal" tabindex="-1" role="dialog" id="errorModal">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title">An error has occurred.</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					<p>
+						<asp:Label runat="server" ID="errorLbl"></asp:Label>
+					</p>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<%} %>
+			<nav id="navbar" class="navbar navbar-expand-md fixed-top navbar-fixed-top">
+				<div class="container">
+					<a class="navbar-brand text-white" href="/">
+					Art Commission
+					</a>
+					<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon bi bi-list mobile-nav-toggle"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav m-auto">
+							<% if (user != null)
+								{ %>
+							<li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="./MyCommission">My Commissions</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="./Commission">Artist Dashboard</a></li>
+							<% }
+								else
+								{ %>
+							<li class="nav-item"><a class="nav-link scrollto active" href="./Default">Home</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="./About.aspx">About</a></li>
+							<%} %>
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<asp:Panel runat="server" ID="SearchPnl" class="input-group mb-1" style="margin-right:10px;" DefaultButton="SubmitSearchPnl">
+								<div class="input-group-prepend">
+									<span class="input-group-text bg-transparent border-right-0" id="basic-addon1"><i class="fa-solid fa-magnifying-glass text-white"></i></span>
+								</div>
+								<asp:TextBox runat="server" class="form-control me-2 bg-transparent border-left-0 text-white" type="search" placeholder="Search" aria-label="Search" style="height:40px" ID="SearchTbx"/>
+								<asp:Button runat="server" type="hidden" ID="SubmitSearchPnl" OnClick="SubmitSearchPnl_Click" style="display: none"/>
+							</asp:Panel>
+							<% if (user != null)
+								{ %>
+							<li class="nav-item dropdown d-flex">
+								<a class="nav-link btn btn-sm btn-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 40px">
+								<i class="fa-solid fa-circle-user p-1"></i><%=user["username"] %>
+								</a>
+								<div class=" dropdown-menu dropdown-menu-right" style="background-color:whitesmoke" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item p-2" href="./Profile">
+									<img class="img-fluid rounded-circle w-25" src="<%=user["avatar_location"].ToString().Length > 0 ? user["avatar_location"] : "img/man-300x300.png"%>"/>
+									<%=user["username"]  %>    
+									<% if (user["user_type"].ToString() == "ADMIN")
+										{ %>
+									<span class="badge badge-secondary">ADMIN</span>
+									<%}
+										else if ((bool)user["is_active"])
+										{%>
+									<span class="badge badge-secondary">ACTIVE</span>
+									<%}
+										else
+										{ %>
+									<span class="badge badge-dark">INACTIVE</span>
+									<%} %>
+									</a>
+									<%if ((bool)user["is_active"]) { %>
+									<a class="dropdown-item font-weight-bold" href="./AddWallet">
+									Wallet
+									<span class="badge badge-info">₱<%=(double)((int)user["wallet"] ) / 100%></span>
+									</a>
+									<%} %>
+									<div class="dropdown-divider"></div>
+									<button type="button" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i data-feather="settings"></i> Account Settings</a> </button>
+									<% if ((bool)user["is_active"])
+										{%>
+									<a class="dropdown-item" href="./RViewer"><i data-feather="settings"></i> Artist Settings</a>
+									<div class="dropdown-divider"></div>
+									<% if (user["user_type"].ToString() == "ADMIN" ) {%>
+									<a class="dropdown-item" href="./AdminCashouts"><i data-feather="external-link"></i> Admin Cashouts</a>
+									<a class="dropdown-item" href="./AdminUsersList"><i data-feather="user"></i> Admin Users List</a>
+									<%} %>
+									<%} %>
+									<div class="dropdown-divider"></div>
+									<asp:Panel runat="server" DefaultButton="LogoutBtn">
+										<asp:Button runat="server" ID="LogoutBtn" CssClass="dropdown-item" OnClick="LogoutBtn_Click" Text="Logout" />
+									</asp:Panel>
+								</div>
+							</li>
+							<% }
+								else
+								{ %>
+							<li class="nav-item"><a class="nav-link scrollto btn btn-sm d-flex btn-danger" href="/Login"><i class="fa-solid fa-arrow-right-to-bracket p-1"></i>Login</a></li>
+							<%} %>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- .navbar -->
+			<div class="body-content">
+				<asp:ContentPlaceHolder ID="MainContent" runat="server">
+				</asp:ContentPlaceHolder>
+			</div>
+			<!-- Modal for Accounting Setting -->
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-                             <i class="fa-solid fa-user-gear p-2" style="font-size:30px;"></i>    <h4 class="text-center p-2">Account Setting</h4>
+							<i class="fa-solid fa-user-gear p-2" style="font-size:30px;"></i>    
+							<h4 class="text-center p-2">Account Setting</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-
-					     
-                            <div class="container">
-                       <div class="accordion shadow-lg" id="accordionExample">
-                  <div class="card">
-                    <div class="card-header" id="headingOne">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Change Profile Info
-                        </button>
-                      </h2>
-                    </div>
-
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-
-                          <form>
-                          <div class="form-group">
-                            <label>Firstname</label>
-                            <input type="text" class="form-control"  placeholder="First name">
-           
-                          </div>
-                          <div class="form-group">
-                             <div class="row">
-                                <div class="col">
-                                    <label>Lastname</label>
-                                  <input type="text" class="form-control" placeholder="Last name">
-                                </div>
-                                <div class="col">
-                                    <label>Middlename</label>
-                                  <input type="text" class="form-control" placeholder="Middle name">
-                                </div>
-                              </div>
-                          </div>
-                              <div class="form-group">
-                            <label>Birthday</label>
-                            <input type="date" class="form-control"  placeholder="Birthday">
-           
-                          </div>
-
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="card">
-                    <div class="card-header" id="headingTwo">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                           Change Password
-                        </button>
-                      </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                      <div class="card-body">
-
-                          <form>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                          </div>
-                          <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
+							<div class="container">
+								<div class="accordion shadow-lg" id="accordionExample">
+									<div class="card">
+										<div class="card-header" id="headingZero">
+											<h2 class="mb-0">
+												<button class="btn btn-link collapsed text-dark p-2" type="button" data-toggle="collapse" data-target="#collapseZero" aria-expanded="false" aria-controls="collapseZero">
+												Change Profile Avatar
+												</button>
+											</h2>
+										</div>
+										<div id="collapseZero" class="collapse" aria-labelledby="headingZero" data-parent="#accordionExample">
+											<div class="card-body">
+												<asp:Panel runat="server" ID="ChangeAvatarPnl" DefaultButton="ChangeAvatarBtn">
+													<div class="form-group">
+														<label for="exampleInputPassword1">Upload Avatar</label>
+														<asp:FileUpload runat="server" ID="ChangeAvatarUpl" class="form-control" accept="image/*"/>
+													</div>
+													<asp:Button runat="server" type="submit" class="btn btn-primary w-100" Text="Submit" ID="ChangeAvatarBtn" OnClick="ChangeAvatarBtn_Click"></asp:Button>
+												</asp:Panel>
+											</div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header" id="headingOne">
+											<h2 class="mb-0">
+												<button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												Change Profile Info
+												</button>
+											</h2>
+										</div>
+										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+											<div class="card-body">
+												<asp:Panel runat="server" ID="ChangeUserInfoPnl" DefaultButton="ChangeUserInfoBtn">
+													<div class="form-group">
+														<label>Firstname</label>
+														<asp:TextBox runat="server" ID="changeFirstNameTbx" class="form-control"  placeholder="First name"/>
+													</div>
+													<div class="form-group">
+														<div class="row">
+															<div class="col">
+																<label>Middlename</label>
+																<asp:TextBox runat="server" ID="changeMiddleNameTbx" class="form-control" placeholder="Middle name" />
+															</div>
+															<div class="col">
+																<label>Lastname</label>
+																<asp:TextBox runat="server" ID="changeLastNameTbx" type="text" class="form-control" placeholder="Last name" />
+															</div>
+															
+														</div>
+													</div>
+													<div class="form-group">
+														<label>Birthday</label>
+														<asp:TextBox runat="server" ID="changeBirthdayTbx" TextMode="Date" class="form-control"  placeholder="Birthday" />
+													</div>
+													<asp:Button runat="server" ID="ChangeUserInfoBtn" type="submit" class="btn btn-primary w-100" Text="Submit" OnClick="ChangeUserInfoBtn_Click"></asp:Button>
+												</asp:Panel>
+											</div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header" id="headingTwo">
+											<h2 class="mb-0">
+												<button class="btn btn-link collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+												Change Password
+												</button>
+											</h2>
+										</div>
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+											<div class="card-body">
+												<asp:Panel runat="server" ID="ChangePasswordPnl" DefaultButton="ChangePasswordBtn">
+													<div class="form-group">
+														<label for="exampleInputPassword1">Password</label>
+														<asp:TextBox runat="server" type="password" class="form-control" id="PasswordTbx" placeholder="Password" />
+													</div>
+													<div class="form-group">
+														<label for="exampleInputPassword1">Confirm Password</label>
+														<asp:TextBox runat="server" type="password" class="form-control" id="ConfirmPasswordTbx" placeholder="Password" />
+													</div>
+													<asp:Button runat="server" type="submit" class="btn btn-primary w-100" Text="Submit" ID="ChangePasswordBtn" OnClick="ChangePasswordBtn_Click"></asp:Button>
+												</asp:Panel>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                 </div>
-
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-    <!-- Footer -->
-        <footer class="page-footer font-small teal pt-4" style="background-color:slategrey;">
-          
-
-          <div class="container py-2 text-center text-md-left d-flex flex-column">
-
-             
-
-                
-            <div class="row">
-
-      
-              <div class="col-md-7 mt-md-0 mt-3">
-
-            <h5 class=" mb-4"> ART COMMISION</h5>
-                <p class=" text-justify col-11">Art Commission is a free-to-all website established in 2022 by students of Quezon City University in partial fulfillment of their requirements for the subject Integrative Programming and Technologies (IPT101). The aim of the website is to allow artists and commissioners to have a portal where they can browse, sell and buy artworks whether it is traditional or digital.</p>
-              
-
-              </div>
-     
-              <hr class="clearfix w-100 d-md-none pb-3">
-      
-              <div class="col-md-5   mb-md-0 m-auto">
-
-                  <h5 class="text-uppercase font-weight-bold"> CONTACT US</h5>
-                <p >Have any suggestions? Leave us a message!</p>
-                <ul style="list-style: none;">
-                    <li class="mb-2"> <span data-feather="phone"></span> :
-                         09301234567
-                    </li>
-                    <li class="mb-2"><span data-feather="mail"></span> :
-                         artcommissions@gmail.com
-                    </li>
-                    <li class="mb-2"> <span data-feather="facebook"></span> :
-                         @artcommissionsPH
-                    </li>
-                    <li class="mb-2"><span data-feather="twitter"></span> :
-                        @artcomissionsPH
-                    </li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
-
-      <div class="footer-copyright text-center py-1">© 2022 Copyright:
-        <a href="/">Art Commision</a>
-      </div>
-
-           
-        </footer>
-<!-- Footer -->
-    <script>
-      feather.replace()
-    </script>
-</body>
+		</form>
+		<!-- Footer -->
+		<footer class="page-footer font-small teal pt-4" style="background-color:slategrey;">
+			<div class="container py-2 text-center text-md-left d-flex flex-column">
+				<div class="row">
+					<div class="col-md-7 mt-md-0 mt-3">
+						<h5 class=" mb-4"> ART COMMISION</h5>
+						<p class=" text-justify col-11">Art Commission is a free-to-all website established in 2022 by students of Quezon City University in partial fulfillment of their requirements for the subject Integrative Programming and Technologies (IPT101). The aim of the website is to allow artists and commissioners to have a portal where they can browse, sell and buy artworks whether it is traditional or digital.</p>
+					</div>
+					<hr class="clearfix w-100 d-md-none pb-3">
+					<div class="col-md-5   mb-md-0 m-auto">
+						<h5 class="text-uppercase font-weight-bold"> CONTACT US</h5>
+						<p >Have any suggestions? Leave us a message!</p>
+						<ul style="list-style: none;">
+							<li class="mb-2"> <span data-feather="phone"></span> :
+								09301234567
+							</li>
+							<li class="mb-2"><span data-feather="mail"></span> :
+								artcommissions@gmail.com
+							</li>
+							<li class="mb-2"> <span data-feather="facebook"></span> :
+								@artcommissionsPH
+							</li>
+							<li class="mb-2"><span data-feather="twitter"></span> :
+								@artcomissionsPH
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright text-center py-1">© 2022 Copyright:
+				<a href="/">Art Commision</a>
+			</div>
+		</footer>
+		<!-- Footer -->
+		<script>
+            feather.replace()
+		</script>
+	</body>
 </html>

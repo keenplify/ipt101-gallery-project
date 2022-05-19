@@ -37,7 +37,7 @@
 	                </td>
 	                <td class="d-flex flex-column">
 		                <!-- Button trigger modal -->
-                        <a href="Message?user_guid=<%=commission["artist_guid"] %>" class="btn btn-info btn-sm mb-1">Message Artist</a>
+                        <a href="Message?to_guid=<%=commission["artist_guid"] %>" class="btn btn-info btn-sm mb-1">Message Artist</a>
                         <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#<%=commission["commission_guid"] %>Modal">
                           More Details
                         </button>

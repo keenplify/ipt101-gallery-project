@@ -107,7 +107,7 @@
          <div class="col-sm-4 mb-3" >
     <div class="card shadow rounded text-center">
       <div class="card-body">
-          <img src="280630207_1766626326875842_2645435360527270109_n.jpg" class="img-fluid rounded-circle w-50 shadow-lg mb-3"/>
+          <img src="img/280630207_1766626326875842_2645435360527270109_n.jpg" class="img-fluid rounded-circle w-50 shadow-lg mb-3"/>
         <h5 class="card-title">Villavera, Gabriela</h5>
         <p class="card-text">Document</p>
           <i class="fa-brands fa-facebook" style="font-size: 20px"></i>   <i class="fa-brands fa-instagram" style="font-size: 20px"></i> <i class="fa-brands fa-twitter" style="font-size: 20px"></i>  <i class="fa-solid fa-envelope" style="font-size: 20px"></i>

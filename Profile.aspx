@@ -88,10 +88,14 @@
                             </div>
                         </div>
                          <%} else { %>
-                         <a class="btn btn-light m-2 shadow" href="./CommissionForm?artist_guid=<%=_user["user_guid"] %>">
-                            <span data-feather="plus" class="mr-2"></span>
-                            Request Commission
-                        </a>
+                            <a class="btn btn-light m-2 shadow" href="./CommissionForm?artist_guid=<%=_user["user_guid"] %>">
+                                <span data-feather="plus" class="mr-2"></span>
+                                Request Commission
+                            </a>
+                            <a class="btn btn-light m-2 shadow" href="./Message?to_guid=<%=_user["user_guid"] %>">
+                                <span data-feather="mail" class="mr-2"></span>
+                                Send Message
+                            </a>
                          <%} %>
                          <%} %>
                     </div>

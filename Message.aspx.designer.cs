@@ -13,5 +13,32 @@ namespace ipt101_gallery_project
 
     public partial class Message
     {
+
+        /// <summary>
+        /// AddMessagePnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AddMessagePnl;
+
+        /// <summary>
+        /// MessageTbx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MessageTbx;
+
+        /// <summary>
+        /// SendMessageBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton SendMessageBtn;
     }
 }

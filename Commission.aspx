@@ -64,7 +64,7 @@
 	                </td>
 	                <td class="d-flex flex-column">
 		                <!-- Button trigger modal -->
-                        <a href="Message?user_guid=<%=commission["created_by"] %>" class="btn btn-info btn-sm mb-1">Message Client</a>
+                        <a href="Message?to_guid=<%=commission["created_by"] %>" class="btn btn-info btn-sm mb-1">Message Client</a>
                         <%  if (status == "WORK IN PROGRESS")
                             {%>
                         <a href="AddArtworkFromCommission?commission_guid=<%=commission["commission_guid"] %>" class="btn btn-success btn-sm mb-1">Upload Artwork</a>
