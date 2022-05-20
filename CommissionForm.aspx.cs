@@ -19,7 +19,6 @@ namespace ipt101_gallery_project
         protected void Page_Load(object sender, EventArgs e)
         {
             user = Helpers.User.AutoLogin();
-
             if (Request.QueryString["artist_guid"] == null) return;
 
             // Get artist data
@@ -43,6 +42,7 @@ namespace ipt101_gallery_project
             }
 
             connection.Close();
+            PackagesList.Items.Clear();
 
             // Get Packages of Artist
             var packageCmd = new SqlCommand("SELECT * FROM packages_tbl WHERE created_by=@createdBy", Helpers.Database.Connect());
