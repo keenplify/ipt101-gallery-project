@@ -54,7 +54,7 @@ namespace ipt101_gallery_project
             {
                 // Get Packages of Artist
                 var packageCmd = new SqlCommand("SELECT * FROM packages_tbl WHERE created_by=@createdBy", connection);
-                packageCmd.Parameters.AddWithValue("@createdBy", user["user_guid"]);
+                packageCmd.Parameters.AddWithValue("@createdBy", _user["user_guid"]);
 
                 var packageReader = packageCmd.ExecuteReader();
 
