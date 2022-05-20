@@ -77,7 +77,7 @@
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="index<%=index %>Modal" tabindex="-1" role="dialog" aria-labelledby="MoreDetails<%=index %>Title" aria-hidden="true">
+                        <div class="modal fade" id="MoreDetails<%=index %>Modal" tabindex="-1" role="dialog" aria-labelledby="MoreDetails<%=index %>Title" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
