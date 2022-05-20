@@ -9,6 +9,7 @@
       <div class="table-cell">
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
+          <img src="img/logo.png" class="img-fluid" style="width: 312px"/>
           <h1 class="hero-title mb-4">Art Commission</h1>
 
           <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->

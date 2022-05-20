@@ -75,7 +75,7 @@
 			<nav id="navbar" class="navbar navbar-expand-md fixed-top navbar-fixed-top">
 				<div class="container">
 					<a class="navbar-brand text-white" href="/">
-					Art Commission
+						<img src="img/logo-white.png" height="35" alt="Website logo"/>
 					</a>
 					<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon bi bi-list mobile-nav-toggle"></span>

@@ -20,8 +20,9 @@
                 </tr>
               </thead>
               <tbody>
-                <% foreach (var commission in artistCommissions)
-                    {
+                <%foreach (var item in artistCommissions.Select((value, index) => new { value, index })) {
+                        var commission = item.value;
+                        var index = item.index;
                         var status = (string)commission["status"];
                         %>
                   <tr>
@@ -71,16 +72,16 @@
                         <%} else if (status == "FINISHED") {%>
                         <a href="ArtworkViewer?artwork_guid=<%=commission["artwork_guid"] %>" class="btn btn-success btn-sm mb-1">View Artwork</a>
                         <%} %>
-                        <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#<%=commission["commission_guid"] %>Modal">
+                        <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#MoreDetails<%=index %>Modal">
                           More Details
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="<%=commission["commission_guid"] %>Modal" tabindex="-1" role="dialog" aria-labelledby="<%=commission["commission_guid"] %>Title" aria-hidden="true">
+                        <div class="modal fade" id="index<%=index %>Modal" tabindex="-1" role="dialog" aria-labelledby="MoreDetails<%=index %>Title" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="<%=commission["commission_guid"] %>Title"><%=commission["title"] %></h5>
+                                <h5 class="modal-title" id="MoreDetails<%=index %>Title"><%=commission["title"] %></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>

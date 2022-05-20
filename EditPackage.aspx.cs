@@ -52,30 +52,39 @@ namespace ipt101_gallery_project
             var connection = Helpers.Database.Connect();
             var qstring = "UPDATE packages_tbl SET " +
                 "title=@title, " +
-                "price=@price," +
-                "description=@description";
+                "price=@price, " +
+                "description=@description ";
 
-            string location="";
+            string location = "";
+
             if (ImageUpl.HasFile)
             {
-                qstring += ", image_location=@location";
-                string path = HttpContext.Current.ApplicationInstance.Server.MapPath("~/user_uploads/");
-                string fn = DateTime.Now.ToFileTime().ToString() + "-" + System.IO.Path.GetFileName(ImageUpl.PostedFile.FileName);
-                location = path + fn;
-                ImageUpl.SaveAs(location);
+                // Save to uploads folder
+                location = DateTimeOffset.Now.ToUnixTimeSeconds() + $"-{PackageTitleTbx.Text}-package" + System.IO.Path.GetExtension(ImageUpl.FileName);
+
+                try
+                {
+                    ImageUpl.SaveAs(Server.MapPath("~/Uploads/" + location));
+                }
+                catch
+                {
+                    throw;
+                }
+
+                qstring += ", image_location=@location ";
             }
 
             qstring += " WHERE package_guid=@packageGuid";
 
             var query = new SqlCommand(qstring, connection);
             query.Parameters.AddWithValue("@title", PackageTitleTbx.Text);
-            query.Parameters.AddWithValue("@price", PriceTbx.Text);
+            query.Parameters.AddWithValue("@price", int.Parse(PriceTbx.Text) * 100);
             query.Parameters.AddWithValue("@description", DescriptionTbx.Text);
             query.Parameters.AddWithValue("@packageGuid", package_guid);
 
             if (ImageUpl.HasFile)
             {
-                query.Parameters.AddWithValue("@location", location);
+                query.Parameters.AddWithValue("@location", "/Uploads/" + location);
             }
 
             query.ExecuteNonQuery();

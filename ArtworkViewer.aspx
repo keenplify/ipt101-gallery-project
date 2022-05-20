@@ -84,7 +84,7 @@
               <div class="col-md-5 py-4" >
                 <h1 style="color: orangered; font-size: 250%;"><%=artwork["title"] %></h1>
                   <% 
-                      if ((user == null ? "":user["user_guid"].ToString()) == artwork["commissioned_by"].ToString())
+                      if ((user == null ? "no user":user["user_guid"].ToString()) == artwork["commissioned_by"].ToString())
                       {%>
                   <label class="font-weight-bold">Set Rating: </label>
                     <div class="rating">

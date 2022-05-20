@@ -45,6 +45,10 @@
                             <span data-feather="upload" class="mr-2"></span>
                             Upload Your Artwork
                         </button>
+                         <a class="btn btn-warning m-2 shadow" href="RViewer.aspx">
+                            <span data-feather="package" class="mr-2"></span>
+                            Edit Artwork Packages
+                        </a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,38 +115,66 @@
 
     <div class="container">
 
-        <div class="container">
-
-            <h3 class=" text-center font-weight-normal text-uppercase py-4">Artworks of <%=_user["firstName"] %> <%=_user["lastName"] %></h3>
-
-            <!-- Gallery -->
-            <%if (artworks.Count > 0)
-                {%>
-            <div class="card-columns justify-content-center">
-                <%foreach (var artwork in artworks)
-                    { %>
-                <a href="./ArtworkViewer?artwork_guid=<%=artwork["artwork_guid"] %>">
-                    <div class="card shadow mb-4">
-                        <img
-                            src="<%=artwork["image_location"] %>"
-                            class="card-img-top bg-light rounded artwork-preview"
-                            alt="<%=artwork["title"] %>"
-                        />
-                        <div class="card-body p-0 text-center">
-                            <h5 class="card-title m-0"><%=artwork["title"] %></h5>
-                        </div>
-                    </div>
-                </a>
-                <%} %>
+        <h3 class=" text-center font-weight-normal text-uppercase py-4">Artwork Packages of <%=_user["firstName"] %> <%=_user["lastName"] %></h3>
+        <%if (packages.Count > 0)
+            {%>
+        <div class="card-columns justify-content-center">
+            <%foreach (var package in packages)
+                { %>
+            <div class="card shadow mb-4 p-2">
+                <img
+                    src="<%=package["image_location"] %>"
+                    class="card-img-top bg-light rounded artwork-preview"
+                    alt="<%=package["title"] %>"
+                />
+                <div class="card-body p-0 text-center">
+                    <h5 class="card-title m-0">
+                        <%=package["title"] %>
+                        <span class="badge badge-info">
+                            ₱<%=double.Parse(package["price"].ToString()) / 100 %>
+                        </span>
+                    </h5>
+                    <p class="card-text">
+                        <%=package["description"]%>
+                    </p>
+                </div>
             </div>
-            <%} else {%>
-            <h4 class="text-center m-5">No artworks found.</h4>
             <%} %>
-            </div>
-            <!-- Gallery -->
+        </div>
+        <%} else {%>
+        <h4 class="text-center">No artwork packages found.</h4>
+        <%} %>
+
+        <h3 class=" text-center font-weight-normal text-uppercase py-4">Artworks of <%=_user["firstName"] %> <%=_user["lastName"] %></h3>
+
+        <!-- Gallery -->
+        <%if (artworks.Count > 0)
+            {%>
+        <div class="card-columns justify-content-center">
+            <%foreach (var artwork in artworks)
+                { %>
+            <a href="./ArtworkViewer?artwork_guid=<%=artwork["artwork_guid"] %>">
+                <div class="card shadow mb-4 p-2">
+                    <img
+                        src="<%=artwork["image_location"] %>"
+                        class="card-img-top bg-light rounded artwork-preview"
+                        alt="<%=artwork["title"] %>"
+                    />
+                    <div class="card-body p-0 text-center">
+                        <h5 class="card-title m-0"><%=artwork["title"] %></h5>
+                        
+                    </div>
+                </div>
+            </a>
+            <%} %>
+        </div>
+        <%} else {%>
+        <h4 class="text-center m-5">No artworks found.</h4>
+        <%} %>
+        <!-- Gallery -->
 
 
-            </div>
+        </div>
     <%} else {%>
     <h3 class="text-center my-5">
         User not found.

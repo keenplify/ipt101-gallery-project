@@ -3,22 +3,24 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <h1 class="text-center">Cashout Requests</h1>
-        <table class="table table-striped table-hover mt-3 rounded shadow">
+        <table class="table table-striped table-hover mt-3 rounded shadow text-center">
             <thead class="font-weight-bold">
                 <tr>
                     <td>Phone Number</td>
                     <td>Account Name</td>
                     <td>Amount</td>
+                    <td>Wallet Type</td>
                     <td>Is Paid</td>
                 </tr>
             </thead>
-            <tbody  class="text-center">
+            <tbody >
                 <% foreach (var cashout in cashouts)
                     { %>
                 <tr>
                     <td><%=cashout["phone_number"] %></td>
                     <td><%=cashout["account_name"] %></td>
                     <td>₱<%=(float)((int)cashout["amount"] / 100) %></td>
+                    <td class="text-capitalize"><%=cashout["type"] %></td>
                     <td>
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">

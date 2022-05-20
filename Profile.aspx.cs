@@ -15,6 +15,7 @@ namespace ipt101_gallery_project
         protected Dictionary<string, object> user; // Logged in user
         protected Dictionary<string, object> _user; // User on profile
         protected List<Dictionary<string, object>> artworks = new List<Dictionary<string, object>>();
+        protected List<Dictionary<string, object>> packages = new List<Dictionary<string, object>>();
         protected bool isSameUser = false;
         protected string error = "";
 
@@ -28,23 +29,44 @@ namespace ipt101_gallery_project
                 isSameUser = true;
             } else
             {
-                SqlConnection connection = Helpers.Database.Connect();
-
-                string query = $"SELECT * FROM users_tbl WHERE user_guid='{Request.QueryString["user_guid"]}'";
-
-                SqlCommand cmd = new SqlCommand(query, connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                //Check if any user has found, if not throw error.
-                if (reader.HasRows != true) return;
-
-                reader.Read();
-
-                //Convert reader to dictionary
-                _user = new Dictionary<string, object>();
-                for (int lp = 0; lp < reader.FieldCount; lp++)
+                using (var connection = Helpers.Database.Connect())
                 {
-                    _user.Add(reader.GetName(lp), reader.GetValue(lp));
+                    string query = $"SELECT * FROM users_tbl WHERE user_guid='{Request.QueryString["user_guid"]}'";
+
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    //Check if any user has found, if not throw error.
+                    if (reader.HasRows != true) return;
+
+                    reader.Read();
+
+                    //Convert reader to dictionary
+                    _user = new Dictionary<string, object>();
+                    for (int lp = 0; lp < reader.FieldCount; lp++)
+                    {
+                        _user.Add(reader.GetName(lp), reader.GetValue(lp));
+                    }
+                }
+            }
+
+            using (var connection = Helpers.Database.Connect())
+            {
+                // Get Packages of Artist
+                var packageCmd = new SqlCommand("SELECT * FROM packages_tbl WHERE created_by=@createdBy", connection);
+                packageCmd.Parameters.AddWithValue("@createdBy", user["user_guid"]);
+
+                var packageReader = packageCmd.ExecuteReader();
+
+                while (packageReader.Read())
+                {
+                    //Convert reader to dictionary
+                    var package = new Dictionary<string, object>();
+                    for (int lp = 0; lp < packageReader.FieldCount; lp++)
+                    {
+                        package.Add(packageReader.GetName(lp), packageReader.GetValue(lp));
+                    }
+                    packages.Add(package);
                 }
             }
 

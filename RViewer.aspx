@@ -14,7 +14,7 @@
                 {%>
 			<div class="col-sm-4">
 				<div class="card shadow ">
-					<img class="card-img-top" style="max-height: 15rem;" src="<%=package["image_location"] %>" alt="Card image cap">
+					<img class="card-img-top rounded" style="max-height: 15rem; object-fit:contain" src="<%=package["image_location"] %>" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title"><%=package["title"] %></h5>
 						<p class="card-text"><%=package["description"] %></p>

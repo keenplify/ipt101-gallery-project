@@ -16,7 +16,10 @@
                 </tr>
               </thead>
               <tbody>
-                <%foreach (var commission in myCommissions) { %>
+                <%foreach (var item in myCommissions.Select((value, index) => new { value, index })) {
+                        var commission = item.value;
+                        var index = item.index;
+                %>
                 <tr>
 	                <td scope="row">
                         <a href="Profile?user_guid=<%=commission["user_guid"] %>">
@@ -38,16 +41,16 @@
 	                <td class="d-flex flex-column">
 		                <!-- Button trigger modal -->
                         <a href="Message?to_guid=<%=commission["artist_guid"] %>" class="btn btn-info btn-sm mb-1">Message Artist</a>
-                        <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#<%=commission["commission_guid"] %>Modal">
+                        <button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#MoreDetails<%=index%>Modal">
                           More Details
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="<%=commission["commission_guid"] %>Modal" tabindex="-1" role="dialog" aria-labelledby="<%=commission["commission_guid"] %>Title" aria-hidden="true">
+                        <div class="modal fade" id="MoreDetails<%=index%>Modal" tabindex="-1" role="dialog" aria-labelledby="MoreDetails<%=index%>Title" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="<%=commission["commission_guid"] %>Title"><%=commission["title"] %></h5>
+                                <h5 class="modal-title" id="MoreDetails<%=index%>Title"><%=commission["title"] %></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -72,16 +75,16 @@
                             {%>
                             <%if (commission["status"].ToString() == "REQUESTED") { %>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#Cancel<%=commission["commission_guid"] %>Modal">
+                            <button type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#Cancel<%=index%>Modal">
                                 Cancel Commission
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="Cancel<%=commission["commission_guid"] %>Modal" tabindex="-1" role="dialog" aria-labelledby="Cancel<%=commission["commission_guid"] %>Title" aria-hidden="true">
+                            <div class="modal fade" id="Cancel<%=index %>Modal" tabindex="-1" role="dialog" aria-labelledby="Cancel<%=index %>Title" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="Cancel<%=commission["commission_guid"] %>Title">Cancel Commission</h5>
+                                    <h5 class="modal-title" id="Cancel<%=index %>Title">Cancel Commission</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
